@@ -42,10 +42,13 @@ O editor não envia nada para servidor. A cliente monta o carimbo, o editor gera
 | Número do WhatsApp | constante `ZAP` |
 | Preços do kit | constante `PRECOS` (`aberta` e `estojo`, por quantidade 2, 4, 6) |
 | Ícones | objeto `ICONES`, nomes em `NOMES`, grupos em `GRUPOS` |
+| Simulação 3D da caixa | função `renderSim` (medidas aproximadas, só ilustração) |
 | Frases prontas | objeto `FRASES` |
 | Fontes | lista `FONTES` e o `<link>` do Google Fonts |
 
 Os preços também aparecem na tabela da vitrine (`carimbos/index.html`): ao mudar, mudar nos dois lugares. As fotos das caixas ficam em `assets/carimbos/`. O botão "Monte o seu carimbo" abre o editor já com o tamanho de kit escolhido (`monte/?n=2`, `4` ou `6`).
+
+Ao criar um ícone novo, a chave dele (ex.: `formiguinha`) vai no código `SAP1:`. O LaserLink precisa ter o mesmo desenho com a mesma chave para gerar o arquivo de corte.
 
 Preços e prazo são decididos pelo Adilson. Não inventar valores.
 

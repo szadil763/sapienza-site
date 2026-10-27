@@ -82,8 +82,8 @@ input[type=text],textarea{-webkit-appearance:none;appearance:none;width:100%;fon
 .aviso{margin:10px 0 0;font-size:14px;min-height:21px;color:var(--preto);font-weight:600;border-left:4px solid var(--vermelho);padding-left:8px}
 .aviso:empty{border-left:0;padding-left:0}
 .dica{margin:10px 0 0;font-size:14px;color:var(--mudo)}
-.sim{margin-top:14px;background:var(--papel);border:2px solid var(--preto);border-radius:14px;padding:12px}
-.sim svg{width:100%;height:auto;display:block;max-width:520px;margin:0 auto}
+.sim{margin-top:14px;background:var(--papel);border:2px solid var(--preto);border-radius:14px;padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sim svg{width:100%;height:auto;display:block;margin:0 auto}
 .chk{display:flex;min-height:44px;align-items:center;font-weight:500;font-size:14px;margin-top:12px}
 .chk input{margin:0 10px 0 0;flex:none;width:20px;height:20px;accent-color:var(--preto)}
 .resumo{background:var(--preto);color:var(--branco);border-radius:14px;padding:20px;margin-top:18px}
@@ -167,7 +167,8 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
         <p class="rot">Modelo da caixa</p>
         <div class="seg claro" id="caixa" role="group" aria-label="Modelo da caixa"><button type="button" data-v="aberta">Caixa aberta</button><button type="button" data-v="estojo">Estojo com tampa</button></div>
         <div class="sim"><svg id="sim" role="img" aria-label="Simulação da caixa com os carimbos"></svg></div>
-        <p class="dica" id="sim-nota">Simulação ilustrativa da sua caixa com os carimbos e os dizeres. A arte final é confirmada no WhatsApp antes de produzir.</p>
+        <p class="dica" id="sim-dica" hidden>Arraste a imagem para o lado para ver a caixa inteira.</p>
+        <p class="dica" id="sim-nota">Simulação ilustrativa da sua caixa: os carimbos em fila, os dizeres gravados na frente e o seu nome. As cores dos carimbos são só ilustração. A arte final é confirmada no WhatsApp antes de produzir.</p>
         <label for="cidade">Cidade ou CEP (para o frete)</label>
         <input type="text" id="cidade" maxlength="40" autocomplete="off">
       </section>
@@ -266,9 +267,18 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     sapo:'<path d="M3.5 14c0-3 2-5 5-5h7c3 0 5 2 5 5 0 3-2.5 5-8.5 5S3.5 17 3.5 14z"/><circle cx="8" cy="8" r="2.8"/><circle cx="16" cy="8" r="2.8"/><circle cx="8" cy="8" r=".8"/><circle cx="16" cy="8" r=".8"/><path d="M8 15.5c2.5 1.8 5.5 1.8 8 0"/>',
     baleia:'<path d="M2 13c0-4 4-7 9-7 4 0 6 2 7 4l4-3c.3 3-.5 5-2 6.5-1.5 2-4 3.5-9 3.5-5 0-9-1.5-9-4z"/><path d="M10 6C9.5 4 8 3.5 7 3M10 6c.5-2 2-2.5 3-3"/><circle cx="6" cy="12" r=".9"/>',
     polvo:'<path d="M6 11a6 6 0 0 1 12 0c0 2-1 3-1 3H7s-1-1-1-3z"/><path d="M7 14c-1 2-2.5 3-3.5 3M10 14v4c0 1.5-1 2-2 2M14 14v4c0 1.5 1 2 2 2M17 14c1 2 2.5 3 3.5 3"/><circle cx="9.5" cy="10" r=".9"/><circle cx="14.5" cy="10" r=".9"/>',
-    raposa:'<path d="M3 4l5.5 3.5h7L21 4l-1.3 9.5L12 21 4.300 13.5z"/><circle cx="9" cy="12" r=".9"/><circle cx="15" cy="12" r=".9"/><path d="M11 17h2l-1 1.200z"/>'
+    raposa:'<path d="M3 4l5.5 3.5h7L21 4l-1.3 9.5L12 21 4.300 13.5z"/><circle cx="9" cy="12" r=".9"/><circle cx="15" cy="12" r=".9"/><path d="M11 17h2l-1 1.200z"/>',
+    formiguinha:'<circle cx="12" cy="8" r="4.5"/><path d="M10 3.8C9.5 2 8 1.5 7 2.2M14 3.8c.5-1.8 2-2.3 3-1.6"/><ellipse cx="12" cy="16.8" rx="3.4" ry="4"/><path d="M8.7 14.5L5.5 12.5M15.3 14.5l3.2-2M10 20.5l-1.5 2M14 20.5l1.5 2"/><circle cx="10.3" cy="7.6" r=".7"/><circle cx="13.7" cy="7.6" r=".7"/><path d="M10.4 9.8c1 .8 2.2.8 3.2 0"/>',
+    corujinha:'<path d="M6 10v5.5a6 6 0 0 0 12 0V10"/><path d="M2.5 7.2L12 3.5l9.5 3.7L12 11z"/><path d="M19.5 8v4.5"/><circle cx="9.5" cy="14" r="1.9"/><circle cx="14.5" cy="14" r="1.9"/><path d="M11.2 17l.8 1.1.8-1.1z"/>',
+    lagartinha:'<circle cx="4.8" cy="15" r="2.5"/><circle cx="9.3" cy="16" r="2.5"/><circle cx="13.8" cy="15" r="2.5"/><circle cx="18.5" cy="12" r="3.2"/><path d="M17.3 9l-.9-2.6M19.9 9l.9-2.6"/><circle cx="17.6" cy="11.6" r=".5"/><circle cx="19.5" cy="11.6" r=".5"/><path d="M17.5 13.6c.6.5 1.4.5 2 0"/>',
+    caracol:'<path d="M2.5 19h15.5a3 3 0 0 0 3-3V10"/><circle cx="10.5" cy="13" r="5.5"/><circle cx="10.5" cy="13" r="2.4"/><path d="M19.6 10L18.7 6.5M22 10l.6-3.5"/>',
+    elefante:'<circle cx="12" cy="10.5" r="6"/><path d="M6.4 8C2.6 7.5 2.6 14 6.4 13.4M17.6 8c3.8-.5 3.8 6 0 5.4"/><path d="M12 13v5.2c0 1.8 1.8 2.4 3 1.2"/><circle cx="10" cy="9.6" r=".8"/><circle cx="14" cy="9.6" r=".8"/>',
+    macaquinho:'<circle cx="12" cy="12" r="6.5"/><circle cx="4.4" cy="12" r="2.2"/><circle cx="19.6" cy="12" r="2.2"/><ellipse cx="12" cy="14.6" rx="3.6" ry="2.7"/><circle cx="10" cy="10" r=".8"/><circle cx="14" cy="10" r=".8"/><path d="M10.8 15.2c.8.6 1.6.6 2.4 0"/>',
+    porquinho:'<circle cx="12" cy="12.5" r="7"/><path d="M6.6 8L5.2 4.4 9 6.4M17.4 8l1.4-3.6L15 6.4"/><ellipse cx="12" cy="14.6" rx="3" ry="2.1"/><circle cx="11" cy="14.6" r=".4"/><circle cx="13" cy="14.6" r=".4"/><circle cx="9.3" cy="10.6" r=".8"/><circle cx="14.7" cy="10.6" r=".8"/>',
+    pintinho:'<circle cx="12" cy="12.5" r="7"/><path d="M12 5.5c-1-2 0-3.5 1.6-3.5"/><path d="M10.6 13.2L12 14.8l1.4-1.6z"/><circle cx="9.6" cy="11" r=".8"/><circle cx="14.4" cy="11" r=".8"/><path d="M10 19.5v2.5M14 19.5v2.5"/>',
+    ovelhinha:'<path d="M7 9.5a3 3 0 0 1 5-2.4 3 3 0 0 1 5 2.4 3 3 0 0 1 0 5.5 3 3 0 0 1-5 2.1 3 3 0 0 1-5-2.1 3 3 0 0 1 0-5.5z"/><ellipse cx="12" cy="12.3" rx="2.6" ry="3"/><circle cx="11" cy="11.8" r=".5"/><circle cx="13" cy="11.8" r=".5"/><path d="M9.5 18.2v3.3M14.5 18.2v3.3"/>'
   };
-  var NOMES={estrela:'Estrela',coracao:'Coração',certo:'Certo',sorriso:'Sorriso',lapis:'Lápis',livro:'Livro',medalha:'Medalha',trofeu:'Troféu',lampada:'Lâmpada',foguete:'Foguete',planeta:'Planeta',sol:'Sol',flor:'Flor',maca:'Maçã',bandeira:'Bandeira',musica:'Música',robo:'Robô',mundo:'Mundo',regua:'Régua',letraA:'Letra A',olhos:'Olhos',caderno:'Caderno',casa:'Casa',livros:'Livros',joinha:'Joinha',abelha:'Abelha',coruja:'Coruja',ursinho:'Ursinho',carinhaAmor:'Carinha apaixonada',carinhaTriste:'Carinha triste',carinhaUau:'Carinha uau',carinhaRiso:'Carinha rindo',estrelas:'Estrelinhas',gatinho:'Gatinho',cachorrinho:'Cachorrinho',coelho:'Coelho',panda:'Panda',dinossauro:'Dinossauro',unicornio:'Unicórnio',peixinho:'Peixinho',tartaruga:'Tartaruga',passarinho:'Passarinho',joaninha:'Joaninha',borboleta:'Borboleta',astronauta:'Astronauta',fantasminha:'Fantasminha',monstrinho:'Monstrinho',pinguim:'Pinguim',leao:'Leão',sapo:'Sapo',baleia:'Baleia',polvo:'Polvo',raposa:'Raposa'};
+  var NOMES={estrela:'Estrela',coracao:'Coração',certo:'Certo',sorriso:'Sorriso',lapis:'Lápis',livro:'Livro',medalha:'Medalha',trofeu:'Troféu',lampada:'Lâmpada',foguete:'Foguete',planeta:'Planeta',sol:'Sol',flor:'Flor',maca:'Maçã',bandeira:'Bandeira',musica:'Música',robo:'Robô',mundo:'Mundo',regua:'Régua',letraA:'Letra A',olhos:'Olhos',caderno:'Caderno',casa:'Casa',livros:'Livros',joinha:'Joinha',abelha:'Abelha',coruja:'Coruja',ursinho:'Ursinho',carinhaAmor:'Carinha apaixonada',carinhaTriste:'Carinha triste',carinhaUau:'Carinha uau',carinhaRiso:'Carinha rindo',estrelas:'Estrelinhas',gatinho:'Gatinho',cachorrinho:'Cachorrinho',coelho:'Coelho',panda:'Panda',dinossauro:'Dinossauro',unicornio:'Unicórnio',peixinho:'Peixinho',tartaruga:'Tartaruga',passarinho:'Passarinho',joaninha:'Joaninha',borboleta:'Borboleta',astronauta:'Astronauta',fantasminha:'Fantasminha',monstrinho:'Monstrinho',pinguim:'Pinguim',leao:'Leão',sapo:'Sapo',baleia:'Baleia',polvo:'Polvo',raposa:'Raposa',formiguinha:'Formiguinha',corujinha:'Corujinha formada',lagartinha:'Lagartinha',caracol:'Caracol',elefante:'Elefante',macaquinho:'Macaquinho',porquinho:'Porquinho',pintinho:'Pintinho',ovelhinha:'Ovelhinha'};
   var EXEMPLOS=[
     {t1:'Prof.ª Ana',t2:'',f:'Fredoka',i:'estrela',l:'esq',m:1},
     {t1:'Parabéns!',t2:'',f:'Baloo 2',i:'medalha',l:'esq',m:0},
@@ -278,7 +288,7 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     {t1:'Continue assim!',t2:'',f:'Caveat',i:'foguete',l:'dir',m:0}];
   var FRASES={"Elogios": [["Muito bem!", "", "certo"], ["Parabéns!", "", "medalha"], ["Amei!", "", "coracao"], ["Ficou lindo!", "", "coracao"], ["Excelente!", "", "estrela"], ["Ótimo trabalho!", "Parabéns!", "trofeu"], ["Adorei seu capricho!", "", "carinhaAmor"], ["Você brilha como", "estrelinhas!", "estrelas"], ["Cada dia você", "brilha mais!", "estrela"], ["Que orgulho!", "Amo você!", "coracao"], ["Continue assim!", "", "foguete"], ["Bom fim de", "semana!", "sol"], ["Visto!", "", "olhos"], ["Seu caderno", "está lindo!", "caderno"], ["Ótima semana!", "", "sol"], ["Sucesso!", "Continue assim", "joinha"]], "Correção e avisos": [["Para casa", "____/____/____", "casa"], ["Lição incompleta!", "", "livros"], ["Atividade", "incompleta", "caderno"], ["Faltou", "", "carinhaTriste"], ["Que pena!", "Você faltou!", "carinhaTriste"], ["Não fez a tarefa", "____/____/____", ""], ["Não fez o dever!", "", ""], ["Preste mais", "atenção!", "olhos"], ["Você pode", "melhorar!", "joinha"], ["Melhore sua letra!", "", "lapis"], ["Corrigido", "no quadro!", "certo"], ["Correção na lousa", "", "livros"], ["Não terminou!", "", ""]], "Datas e nome": [["Em aula", "____/____/____", ""], ["Visto", "____/____/____", "certo"], ["Entregue em", "____/____/____", "caderno"], ["Prof.ª ________", "", ""]]};
   var cat='Elogios';
-  var GRUPOS={"Escola": ["estrela", "coracao", "certo", "lapis", "livro", "livros", "caderno", "regua", "letraA", "medalha", "trofeu", "lampada", "bandeira", "casa", "joinha", "olhos", "estrelas", "musica", "mundo", "maca", "sol", "flor", "planeta"], "Bichinhos": ["gatinho", "cachorrinho", "coelho", "panda", "ursinho", "leao", "raposa", "sapo", "pinguim", "coruja", "passarinho", "abelha", "joaninha", "borboleta", "peixinho", "baleia", "polvo", "tartaruga"], "Personagens": ["robo", "foguete", "astronauta", "dinossauro", "unicornio", "fantasminha", "monstrinho"], "Carinhas": ["sorriso", "carinhaAmor", "carinhaRiso", "carinhaUau", "carinhaTriste"]};
+  var GRUPOS={"Escola": ["estrela", "coracao", "certo", "lapis", "livro", "livros", "caderno", "regua", "letraA", "medalha", "trofeu", "lampada", "bandeira", "casa", "joinha", "olhos", "estrelas", "musica", "mundo", "maca", "sol", "flor", "planeta"], "Bichinhos": ["gatinho", "cachorrinho", "coelho", "panda", "ursinho", "leao", "raposa", "sapo", "pinguim", "coruja", "passarinho", "abelha", "joaninha", "borboleta", "peixinho", "baleia", "polvo", "tartaruga", "porquinho", "pintinho", "ovelhinha", "macaquinho", "elefante", "caracol", "lagartinha"], "Personagens": ["formiguinha", "corujinha", "robo", "foguete", "astronauta", "dinossauro", "unicornio", "fantasminha", "monstrinho"], "Carinhas": ["sorriso", "carinhaAmor", "carinhaRiso", "carinhaUau", "carinhaTriste"]};
   var grupo='Escola';
   var N=6,sel=0,slots=[];
   var qn=/[?&]n=(\d)/.exec(location.search);if(qn&&[2,4,6].indexOf(+qn[1])>=0)N=+qn[1];
@@ -378,30 +388,80 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     $('zap').href='https://wa.me/'+ZAP+'?text='+encodeURIComponent('Oi! Quero fazer este pedido de carimbos personalizados:\n\n'+txt);
     renderSim();
   }
-  /* simulacao ilustrativa da caixa: carimbos vistos de cima, com a impressao de cada um, e o nome gravado na frente */
+  /* simulacao 3D (projecao obliqua) da caixa real: carimbos em fila, painel de tras com arcos e nome,
+     frente gravada com icone e frase de cada carimbo. Medidas em mm aproximados, so para ilustrar. */
+  var MDF={frente:'#E2C48F',topo:'#EDD6AA',lado:'#C9A86F',dentro:'#D2B27A',linha:'#7A5A2A',grava:'#5A3E17'};
+  var CORPOS=['#1B1B1B','#E63A2E','#F2B400'];
+  function tom(h,a){var n=parseInt(h.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,t=a<0?0:255,k=Math.abs(a);
+    function c(v){return Math.round(v+(t-v)*k)}return 'rgb('+c(r)+','+c(g)+','+c(b)+')'}
+  function linhasDe(t,max){var p=t.split(/\s+/),l=[],cur='';p.forEach(function(w){if(!w)return;if(cur&&(cur+' '+w).length>max){l.push(cur);cur=w}else cur=cur?cur+' '+w:w});if(cur)l.push(cur);return l.slice(0,3)}
   function renderSim(){
-    var cols=2,rows=N/cols,sw=150,sh=64,gap=10,pad=18,ox=4,oy=4;
-    var tw=cols*sw+(cols-1)*gap,th=rows*sh+(rows-1)*gap,bw=tw+2*pad,bh=th+2*pad,fh=58;
-    var g='<rect x="'+(ox+6)+'" y="'+(oy+8)+'" width="'+bw+'" height="'+(bh+fh)+'" rx="14" fill="#1B1B1B" opacity=".12"/>';
-    g+='<rect x="'+ox+'" y="'+oy+'" width="'+bw+'" height="'+(bh+fh)+'" rx="14" fill="#E6DFCF" stroke="#1B1B1B" stroke-width="3"/>';
-    g+='<rect x="'+(ox+pad-6)+'" y="'+(oy+pad-6)+'" width="'+(tw+12)+'" height="'+(th+12)+'" rx="8" fill="#D6CCB6"/>';
-    if(extra.b==='estojo'){
-      g+='<path d="M'+(ox+8)+' '+(oy+7)+'H'+(ox+bw-8)+'M'+(ox+8)+' '+(oy+bh-7)+'H'+(ox+bw-8)+'" stroke="#1B1B1B" stroke-width="2" opacity=".45"/>';
-      g+='<rect x="'+(ox+bw-14)+'" y="'+(oy+4)+'" width="10" height="'+(bh-8)+'" rx="3" fill="#E6DFCF" stroke="#1B1B1B" stroke-width="2"/>';
-    }
-    for(var i=0;i<N;i++){
-      var d=dados(i),c=i%cols,r=Math.floor(i/cols),x=ox+pad+c*(sw+gap),y=oy+pad+r*(sh+gap);
-      g+='<rect x="'+x+'" y="'+y+'" width="'+sw+'" height="'+sh+'" rx="9" fill="#1B1B1B"/>';
-      g+='<rect x="'+(x+7)+'" y="'+(y+7)+'" width="'+(sw-14)+'" height="'+(sh-14)+'" rx="4" fill="#FFFFFF"/>';
-      g+='<svg x="'+(x+9)+'" y="'+(y+9)+'" width="'+(sw-18)+'" height="'+(sh-18)+'" viewBox="-1 -1 40 16">'+svgCarimbo(d,false)+'</svg>';
-    }
+    var est=extra.b==='estojo',w=26,d=50,h=58,g=6,t=3,D=60,L=N*w+(N+1)*g+2*t;
+    var Hf=est?64:30,Hb=est?64:80,R=w/2-1,ys=5,zs=3;
+    var mx=1e9,Mx=-1e9,my=1e9,My=-1e9;
+    function P(x,y,z){var X=x+0.45*y,Y=0.06*x-0.42*y-z;if(X<mx)mx=X;if(X>Mx)Mx=X;if(Y<my)my=Y;if(Y>My)My=Y;return [X,Y]}
+    function pts(a){return a.map(function(q){var r=P(q[0],q[1],q[2]);return r[0].toFixed(2)+','+r[1].toFixed(2)}).join(' ')}
+    function poly(a,f,sw){return '<polygon points="'+pts(a)+'" fill="'+f+'" stroke="'+MDF.linha+'" stroke-width="'+(sw||0.5)+'" stroke-linejoin="round"/>'}
+    function mat(a,b,c,dd,o){return 'matrix('+a+','+b+','+c+','+dd+','+o[0].toFixed(2)+','+o[1].toFixed(2)+')'}
+    function frontal(y){return mat(1,0.06,0,1,P(0,y,0))}
+    function txt(x,y,s,fs,f,cor,op){return '<text x="'+x.toFixed(2)+'" y="'+y.toFixed(2)+'" text-anchor="middle" font-family="\''+f+'\', sans-serif" font-weight="'+pesoDe(f)+'" font-size="'+fs.toFixed(2)+'" fill="'+cor+'"'+(op?' opacity="'+op+'"':'')+'>'+esc(s)+'</text>'}
+    function cabe(s,max,f,lim){return Math.min(max,lim/Math.max(0.1,larg100(s,f)/100))}
     var nome=extra.c.trim(),vazio=!nome;if(vazio)nome='Seu nome aqui';
-    var fs=Math.min(26,(bw-40)/Math.max(1,larg100(nome,'Poppins')/100));
-    g+='<line x1="'+(ox+10)+'" y1="'+(oy+bh)+'" x2="'+(ox+bw-10)+'" y2="'+(oy+bh)+'" stroke="#1B1B1B" stroke-width="2" opacity=".35"/>';
-    g+='<text x="'+(ox+bw/2)+'" y="'+(oy+bh+fh/2+fs*0.35)+'" text-anchor="middle" font-family="\'Poppins\', sans-serif" font-weight="700" font-size="'+fs.toFixed(1)+'" fill="#1B1B1B" opacity="'+(vazio?'.3':'.82')+'">'+esc(nome)+'</text>';
-    var el=$('sim');
-    el.setAttribute('viewBox','0 0 '+(bw+ox+10)+' '+(bh+fh+oy+12));
-    el.innerHTML=g;
+    var o='';
+    /* sombra e base */
+    o+='<polygon points="'+pts([[6,4,-4],[L+16,4,-4],[L+22,D+10,-4],[12,D+10,-4]])+'" fill="#1B1B1B" opacity=".10"/>';
+    o+=poly([[-2,-2,0],[L+2,-2,0],[L+2,D+2,0],[-2,D+2,0]],MDF.topo);
+    o+=poly([[-2,-2,-4],[L+2,-2,-4],[L+2,-2,0],[-2,-2,0]],MDF.frente);
+    o+=poly([[L+2,-2,-4],[L+2,D+2,-4],[L+2,D+2,0],[L+2,-2,0]],MDF.lado);
+    /* painel de tras com arcos (um por carimbo) */
+    var path='M0,0 L0,'+(-Hb),arcos='';
+    for(var i=0;i<N;i++){var cx=t+g+i*(w+g)+w/2;
+      path+=' L'+(cx-R)+','+(-Hb)+' A'+R+','+R+' 0 0 1 '+(cx+R)+','+(-Hb);
+      arcos+='<path d="M'+(cx-R*0.7)+','+(-Hb)+' A'+(R*0.7)+','+(R*0.7)+' 0 0 1 '+(cx+R*0.7)+','+(-Hb)+' M'+(cx-R*0.42)+','+(-Hb)+' A'+(R*0.42)+','+(R*0.42)+' 0 0 1 '+(cx+R*0.42)+','+(-Hb)+'" fill="none" stroke="'+MDF.grava+'" stroke-width="1.1" opacity=".55"/>';
+      P(cx,D-t,Hb+R)}
+    path+=' L'+L+','+(-Hb)+' L'+L+',0 Z';
+    o+=poly([[L,D-t,0],[L,D,0],[L,D,Hb],[L,D-t,Hb]],MDF.lado);
+    o+='<g transform="'+frontal(D-t)+'"><path d="'+path+'" fill="'+MDF.frente+'" stroke="'+MDF.linha+'" stroke-width=".5" stroke-linejoin="round"/>'+arcos;
+    if(!est){var fsn=cabe(nome,11,'Poppins',L-14);o+=txt(L/2,-(zs+h+(Hb-zs-h)/2)+fsn*0.35,nome,fsn,'Poppins',MDF.grava,vazio?'.4':'.85')}
+    o+='</g>';
+    /* parede esquerda por dentro */
+    var topoLado=est?[[t,0,Hf],[t,D-t,Hf]]:[[t,0,Hf],[t,D-t,Hf+24]];
+    o+=poly([[t,0,0],[t,D-t,0]].concat([topoLado[1],topoLado[0]]),MDF.dentro);
+    if(!est){
+      /* carimbos em fila */
+      for(i=0;i<N;i++){var x0=t+g+i*(w+g),cor=CORPOS[i%3],z1=zs+h,dd=dados(i);
+        o+='<polygon points="'+pts([[x0+w,ys,zs],[x0+w,ys+d,zs],[x0+w,ys+d,z1],[x0+w,ys,z1]])+'" fill="'+tom(cor,-0.35)+'"/>';
+        o+='<polygon points="'+pts([[x0,ys,z1],[x0+w,ys,z1],[x0+w,ys+d,z1],[x0,ys+d,z1]])+'" fill="'+tom(cor,0.18)+'"/>';
+        o+='<polygon points="'+pts([[x0,ys,zs],[x0+w,ys,zs],[x0+w,ys,z1],[x0,ys,z1]])+'" fill="'+cor+'"/>';
+        o+='<g transform="'+mat(0.45,-0.42,1,0.06,P(x0,ys,z1))+'"><rect x="3" y="3" width="'+(d-6)+'" height="'+(w-6)+'" rx="2" fill="#FFFFFF"/><svg x="4" y="4" width="'+(d-8)+'" height="'+(w-8)+'" viewBox="-1 -1 40 16">'+svgCarimbo(dd,false)+'</svg></g>';
+      }
+    }else{
+      /* estojo fechado: tampa com o nome */
+      o+=poly([[0,0,Hf],[L,0,Hf],[L,D-t,Hf],[0,D-t,Hf]],MDF.topo);
+      o+='<g transform="'+mat(1,0.06,-0.45,0.42,P(0,D-t,Hf))+'">';
+      var fsl=cabe(nome,14,'Poppins',L-16);o+=txt(L/2,(D-t)/2+fsl*0.35,nome,fsl,'Poppins',MDF.grava,vazio?'.4':'.85');
+      o+='<path d="M'+(L/2-9)+','+(D-t-1)+' a9,6 0 0 1 18,0" fill="'+MDF.dentro+'" stroke="'+MDF.linha+'" stroke-width=".5"/></g>';
+    }
+    /* frente gravada: icone e frase de cada carimbo */
+    o+='<g transform="'+frontal(0)+'"><rect x="0" y="'+(-Hf)+'" width="'+L+'" height="'+Hf+'" fill="'+MDF.frente+'" stroke="'+MDF.linha+'" stroke-width=".5"/>';
+    var si=est?13:8,fsMax=est?6.4:4.8,lh=est?7.2:5.4,iy=est?-Hf+10:-Hf+3;
+    for(i=0;i<N;i++){var dd2=dados(i),cx2=t+g+i*(w+g)+w/2,fr=(dd2.t1&&dd2.t1.trim())?dd2.t1:(dd2.t2||'');
+      if(dd2.i&&ICONES[dd2.i])o+='<g transform="translate('+(cx2-si/2)+','+iy+') scale('+(si/24)+')" fill="none" stroke="'+MDF.grava+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".85">'+ICONES[dd2.i]+'</g>';
+      var ls=linhasDe(fr,9),ty=iy+si+lh*0.85;
+      ls.forEach(function(l,k){o+=txt(cx2,ty+k*lh,l,cabe(l,fsMax,'Poppins',w+g-2),'Poppins',MDF.grava,'.85')});
+    }
+    o+='</g>';
+    if(!est)o+=poly([[0,0,Hf],[L,0,Hf],[L,t,Hf],[0,t,Hf]],MDF.topo);
+    /* lateral direita por fora */
+    var lat=est?[[L,0,0],[L,D-t,0],[L,D-t,Hf],[L,0,Hf]]:[[L,0,0],[L,D-t,0],[L,D-t,Hf+24],[L,0,Hf]];
+    o+=poly(lat,MDF.lado);
+    if(est)o+=poly([[0,0,Hf],[L,0,Hf],[L,0,Hf+0.01],[0,0,Hf+0.01]],MDF.topo);
+    var el=$('sim'),pad=4;
+    el.setAttribute('viewBox',(mx-pad).toFixed(1)+' '+(my-pad).toFixed(1)+' '+(Mx-mx+2*pad).toFixed(1)+' '+(My-my+2*pad).toFixed(1));
+    el.innerHTML=o;
+    el.style.maxWidth=(N===2?300:N===4?440:600)+'px';
+    el.style.minWidth=(N===6?'440px':'0');
+    $('sim-dica').hidden=!(N===6&&el.parentNode.clientWidth<440);
     el.setAttribute('aria-label','Simulação da '+CAIXAS[extra.b]+' com '+N+' carimbos e o nome '+nome+' gravado. Carimbos: '+(function(){var l=[];for(var k=0;k<N;k++)l.push((k+1)+') '+descreve(dados(k)));return l.join('; ')})());
   }
   function marcaExtra(){
