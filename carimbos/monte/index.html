@@ -75,12 +75,15 @@ input[type=text],textarea{-webkit-appearance:none;appearance:none;width:100%;fon
 .linha{display:flex;flex-wrap:wrap;margin-bottom:-16px}
 .linha>*{margin:0 24px 16px 0}
 .palco{position:-webkit-sticky;position:sticky;top:16px}
-@media(max-width:820px){.palco{display:contents}.previa{order:-1;position:-webkit-sticky;position:sticky;top:0;z-index:5;background:var(--creme);padding:8px 0 6px}.previa .papel{padding:8px 10px}.previa .papel svg{max-width:300px}.previa h2{margin-bottom:6px}.previa .chk{margin-top:6px}.previa .aviso{min-height:0;margin-top:4px}.res{order:1}}
+@media(max-width:820px){.palco{display:contents}.previa{order:-1;position:-webkit-sticky;position:sticky;top:0;z-index:5;background:var(--creme);padding:8px 0 6px}.previa .papel{padding:6px 10px}.previa .papel svg{max-width:240px}.previa h2{margin-bottom:4px;font-size:13px}.previa .chk{margin-top:2px;font-size:13px}.previa .aviso{min-height:0;margin-top:4px}.res{order:1}}
+@media(max-width:820px) and (max-height:520px){.previa{position:static}}
 .papel{background:var(--papel);border:2px solid var(--preto);border-radius:14px;padding:26px 18px}
 .papel svg{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
 .aviso{margin:10px 0 0;font-size:14px;min-height:21px;color:var(--preto);font-weight:600;border-left:4px solid var(--vermelho);padding-left:8px}
 .aviso:empty{border-left:0;padding-left:0}
 .dica{margin:10px 0 0;font-size:14px;color:var(--mudo)}
+.sim{margin-top:14px;background:var(--papel);border:2px solid var(--preto);border-radius:14px;padding:12px}
+.sim svg{width:100%;height:auto;display:block;max-width:520px;margin:0 auto}
 .chk{display:flex;min-height:44px;align-items:center;font-weight:500;font-size:14px;margin-top:12px}
 .chk input{margin:0 10px 0 0;flex:none;width:20px;height:20px;accent-color:var(--preto)}
 .resumo{background:var(--preto);color:var(--branco);border-radius:14px;padding:20px;margin-top:18px}
@@ -163,6 +166,8 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
         <input type="text" id="cliente" maxlength="26" autocomplete="off" placeholder="Ex.: Prof.ª Ana">
         <p class="rot">Modelo da caixa</p>
         <div class="seg claro" id="caixa" role="group" aria-label="Modelo da caixa"><button type="button" data-v="aberta">Caixa aberta</button><button type="button" data-v="estojo">Estojo com tampa</button></div>
+        <div class="sim"><svg id="sim" role="img" aria-label="Simulação da caixa com os carimbos"></svg></div>
+        <p class="dica" id="sim-nota">Simulação ilustrativa da sua caixa com os carimbos e os dizeres. A arte final é confirmada no WhatsApp antes de produzir.</p>
         <label for="cidade">Cidade ou CEP (para o frete)</label>
         <input type="text" id="cidade" maxlength="40" autocomplete="off">
       </section>
@@ -371,6 +376,33 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     $('resumo').textContent=txt;
     $('valor').innerHTML=reais(PRECOS[extra.b][N])+'<small>Kit de '+N+' com '+CAIXAS[extra.b]+'. Frete à parte. Prazo combinado no WhatsApp.</small>';
     $('zap').href='https://wa.me/'+ZAP+'?text='+encodeURIComponent('Oi! Quero fazer este pedido de carimbos personalizados:\n\n'+txt);
+    renderSim();
+  }
+  /* simulacao ilustrativa da caixa: carimbos vistos de cima, com a impressao de cada um, e o nome gravado na frente */
+  function renderSim(){
+    var cols=2,rows=N/cols,sw=150,sh=64,gap=10,pad=18,ox=4,oy=4;
+    var tw=cols*sw+(cols-1)*gap,th=rows*sh+(rows-1)*gap,bw=tw+2*pad,bh=th+2*pad,fh=58;
+    var g='<rect x="'+(ox+6)+'" y="'+(oy+8)+'" width="'+bw+'" height="'+(bh+fh)+'" rx="14" fill="#1B1B1B" opacity=".12"/>';
+    g+='<rect x="'+ox+'" y="'+oy+'" width="'+bw+'" height="'+(bh+fh)+'" rx="14" fill="#E6DFCF" stroke="#1B1B1B" stroke-width="3"/>';
+    g+='<rect x="'+(ox+pad-6)+'" y="'+(oy+pad-6)+'" width="'+(tw+12)+'" height="'+(th+12)+'" rx="8" fill="#D6CCB6"/>';
+    if(extra.b==='estojo'){
+      g+='<path d="M'+(ox+8)+' '+(oy+7)+'H'+(ox+bw-8)+'M'+(ox+8)+' '+(oy+bh-7)+'H'+(ox+bw-8)+'" stroke="#1B1B1B" stroke-width="2" opacity=".45"/>';
+      g+='<rect x="'+(ox+bw-14)+'" y="'+(oy+4)+'" width="10" height="'+(bh-8)+'" rx="3" fill="#E6DFCF" stroke="#1B1B1B" stroke-width="2"/>';
+    }
+    for(var i=0;i<N;i++){
+      var d=dados(i),c=i%cols,r=Math.floor(i/cols),x=ox+pad+c*(sw+gap),y=oy+pad+r*(sh+gap);
+      g+='<rect x="'+x+'" y="'+y+'" width="'+sw+'" height="'+sh+'" rx="9" fill="#1B1B1B"/>';
+      g+='<rect x="'+(x+7)+'" y="'+(y+7)+'" width="'+(sw-14)+'" height="'+(sh-14)+'" rx="4" fill="#FFFFFF"/>';
+      g+='<svg x="'+(x+9)+'" y="'+(y+9)+'" width="'+(sw-18)+'" height="'+(sh-18)+'" viewBox="-1 -1 40 16">'+svgCarimbo(d,false)+'</svg>';
+    }
+    var nome=extra.c.trim(),vazio=!nome;if(vazio)nome='Seu nome aqui';
+    var fs=Math.min(26,(bw-40)/Math.max(1,larg100(nome,'Poppins')/100));
+    g+='<line x1="'+(ox+10)+'" y1="'+(oy+bh)+'" x2="'+(ox+bw-10)+'" y2="'+(oy+bh)+'" stroke="#1B1B1B" stroke-width="2" opacity=".35"/>';
+    g+='<text x="'+(ox+bw/2)+'" y="'+(oy+bh+fh/2+fs*0.35)+'" text-anchor="middle" font-family="\'Poppins\', sans-serif" font-weight="700" font-size="'+fs.toFixed(1)+'" fill="#1B1B1B" opacity="'+(vazio?'.3':'.82')+'">'+esc(nome)+'</text>';
+    var el=$('sim');
+    el.setAttribute('viewBox','0 0 '+(bw+ox+10)+' '+(bh+fh+oy+12));
+    el.innerHTML=g;
+    el.setAttribute('aria-label','Simulação da '+CAIXAS[extra.b]+' com '+N+' carimbos e o nome '+nome+' gravado. Carimbos: '+(function(){var l=[];for(var k=0;k<N;k++)l.push((k+1)+') '+descreve(dados(k)));return l.join('; ')})());
   }
   function marcaExtra(){
     [].forEach.call($('caixa').children,function(b){b.setAttribute('aria-pressed',String(b.dataset.v===extra.b))});

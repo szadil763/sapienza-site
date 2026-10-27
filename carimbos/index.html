@@ -83,14 +83,13 @@ p{margin:0}
 .caderno{margin-top:36px;background:var(--creme);color:var(--preto);border-radius:14px;padding:26px 22px 22px;position:relative;overflow:hidden;
   background-image:repeating-linear-gradient(transparent 0 35px,#cfc8b8 35px 36px);background-position:0 12px;height:300px}
 .caderno:before{content:"";position:absolute;left:44px;top:0;bottom:0;width:2px;background:var(--vermelho);opacity:.55}
-.texto-aluno{position:absolute;left:62px;top:16px;font-size:20px;color:#6b665a;font-weight:500}
+.texto-aluno{position:absolute;left:62px;right:16px;top:16px;line-height:36px;font-size:20px;color:#6b665a;font-weight:500}
 .marca{position:absolute;left:62px;top:116px;width:270px;max-width:62%;height:100px;border:3px solid currentColor;border-radius:8px;
   display:flex;align-items:center;justify-content:center;font-weight:700;white-space:nowrap;-webkit-transform:rotate(-2deg);transform:rotate(-2deg);
   opacity:0;transition:opacity .25s;color:var(--preto);padding:0 10px;overflow:hidden}
 .marca.on{opacity:1}
-.carimbo-demo{position:absolute;left:calc(62px + 270px - 70px);top:-40px;width:90px;transition:transform .45s cubic-bezier(.5,0,.4,1);-webkit-transform:translateY(0);transform:translateY(0)}
-@media(max-width:560px){.carimbo-demo{left:auto;right:12px}}
-.carimbo-demo.baixo{-webkit-transform:translateY(120px);transform:translateY(120px)}
+.carimbo-demo{position:absolute;left:262px;top:-130px;width:90px;transition:transform .45s cubic-bezier(.5,0,.4,1);-webkit-transform:translateY(0);transform:translateY(0)}
+.carimbo-demo.baixo{-webkit-transform:translateY(180px);transform:translateY(180px)}
 .carimbo-demo svg{width:100%;height:auto;display:block}
 .chips{display:flex;flex-wrap:wrap;margin:18px -5px 0}
 .chip{min-height:44px;margin:5px;font:600 15px var(--fonte);background:transparent;color:var(--branco);border:2px solid #8a857a;border-radius:99px;padding:8px 16px;cursor:pointer}
@@ -121,7 +120,7 @@ p{margin:0}
 .tabela{width:100%;border-collapse:collapse;margin-top:24px;font-size:18px}
 .tabela th,.tabela td{padding:12px 10px;text-align:left;border-bottom:2px solid rgba(27,27,27,.18)}
 .tabela th{font-size:14px;text-transform:uppercase;letter-spacing:.05em}
-.tabela td:first-child{font-weight:700}
+.tabela td:first-child{font-weight:700;white-space:nowrap}
 .tabela td.v{font-weight:700;font-size:22px}
 @media(max-width:420px){.tabela{font-size:15px}.tabela td.v{font-size:18px}.tabela th,.tabela td{padding:10px 6px}.tabela th{font-size:12px}}
 .escola{margin-top:26px;padding:18px 20px;border:2px solid currentColor;border-radius:14px;font-size:17px}
@@ -138,6 +137,7 @@ p{margin:0}
 .amarelo-fundo .btn{background:var(--preto);color:var(--branco)}
 .botoes{margin-right:-12px}
 .botoes .btn{margin-right:12px}
+@media(max-width:480px){.botoes{margin-right:0}.botoes .btn{display:block;width:100%;margin-right:0;margin-top:14px}.btn{padding:15px 22px}}
 .btn-monte{margin-top:26px}
 .aviso{margin-top:14px;font-size:14px;opacity:.85;min-height:1.5em}
 .pe{margin-top:40px;font-size:13px;opacity:.75}
@@ -307,6 +307,9 @@ Cidade/CEP (para o frete):</textarea>
   /* altura proporcional a 38 x 14 mm, sem aspect-ratio */
   function ajusta(){
     marca.style.height=Math.round(marca.offsetWidth*14/38)+'px';
+    /* o carimbo desce sobre a marca, sem sair do caderno */
+    var cw=$('caderno').clientWidth,l=marca.offsetLeft+marca.offsetWidth/2-45;
+    cd.style.left=Math.max(0,Math.min(l,cw-100))+'px';
     var s=34;marca.style.fontSize=s+'px';
     while(marca.scrollWidth>marca.clientWidth&&s>12){s--;marca.style.fontSize=s+'px'}
   }
