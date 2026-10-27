@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carimbos personalizados | Sapienza</title>
-<meta name="description" content="Monte seu kit de carimbos personalizados com caixa de MDF: escolha a imagem, a frase e a letra. O pedido sai pronto para o WhatsApp.">
+<title>Kit de carimbos personalizados | Sapienza</title>
+<meta name="description" content="Carimbos automáticos personalizados com seu nome e seus dizeres, numa caixa de MDF cortada a laser. Monte o seu e peça pelo WhatsApp.">
+<meta name="theme-color" content="#1B1B1B">
 <link rel="icon" href="../assets/simbolo-claro.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Sapienza, Tecnologia Educacional">
-<meta property="og:title" content="Monte o seu carimbo personalizado | Sapienza">
-<meta property="og:description" content="Monte seu kit de carimbos personalizados com caixa de MDF: escolha a imagem, a frase e a letra. O pedido sai pronto para o WhatsApp.">
+<meta property="og:title" content="Kit de carimbos personalizados | Sapienza">
+<meta property="og:description" content="Monte o seu carimbo: escolha a imagem, a frase e a letra. Kits de 2, 4 ou 6 em caixa de MDF.">
 <meta property="og:url" content="https://szadil763.github.io/sapienza-site/carimbos/">
 <meta property="og:image" content="https://szadil763.github.io/sapienza-site/assets/og-sapienza.png">
 <meta property="og:image:width" content="1200">
@@ -18,403 +19,355 @@
 <meta property="og:image:alt" content="Símbolo da Sapienza e a frase Aprender com as mãos.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://szadil763.github.io/sapienza-site/carimbos/">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fredoka:wght@600&family=Pacifico&family=Caveat:wght@700&family=Lobster&family=Baloo+2:wght@700&family=Patrick+Hand&family=Permanent+Marker&family=Bebas+Neue&family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&family=Chewy&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
 <style>
-/* Bancada de oficina: papel creme, tinta preta, amarelo Sapienza como destaque.
-   Duas colunas no desktop (controles + carimbo em tamanho grande); uma coluna no celular. */
+/* Folder em painéis: creme e preto da marca, amarelo como destaque, vermelho só nos detalhes do carimbo.
+   Sem gap em flex, padding-block, inset ou aspect-ratio: o Safari 12 a 14 não entende. */
 :root{
-  --creme:#F2EFE8; --preto:#1B1B1B; --branco:#FFFFFF; --amarelo:#F2B400; --vermelho:#E63A2E;
-  --papel:#FBFAF6; --linha:#8f887a; --mudo:#6b665a;
+  --creme:#F2EFE8; --preto:#1B1B1B; --branco:#FFFFFF;
+  --amarelo:#F2B400; --vermelho:#E63A2E; --mdf:#E6DFCF;
   --fonte:'Poppins','Montserrat',Arial,sans-serif;
   color-scheme:light;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--creme);color:var(--preto);font-family:var(--fonte);font-size:16px;line-height:1.5;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:28px;padding-bottom:40px}
-.wrap{max-width:1040px;margin:0 auto}
-h1{margin:14px 0 0;font-size:40px;font-size:clamp(34px,7vw,56px);line-height:1.04;letter-spacing:-.02em;text-wrap:balance}
-h2{margin:0 0 10px;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
-.tag{display:inline-block;background:var(--amarelo);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:99px}
-.lead{margin:12px 0 0;max-width:46ch}
-.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:32px;margin-top:28px;align-items:start}
-@media(max-width:820px){.grid{grid-template-columns:minmax(0,1fr)}}
-.bloco{padding-top:18px;padding-bottom:18px;border-top:2px solid var(--preto)}
-.bloco:first-child{border-top:0;padding-top:0}
-button{font-family:var(--fonte);cursor:pointer}
-/* foco visivel: preto no papel, amarelo sobre fundo preto; Safari antigo ignora a 3a regra e sempre mostra o foco */
-:focus{outline:3px solid var(--preto);outline-offset:2px}
-.seg:not(.claro) button:focus,.resumo :focus{outline-color:var(--amarelo)}
-:focus:not(:focus-visible){outline:none}
-.seg{display:inline-flex;flex-wrap:wrap;max-width:100%;padding:3px;background:var(--preto);border-radius:24px}
-.seg>*{margin:2px}
-.seg button{min-height:44px;font:700 15px var(--fonte);color:var(--branco);background:transparent;border:0;border-radius:99px;padding:8px 18px;white-space:nowrap}
-@media(max-width:480px){.seg button{padding:8px 10px;font-size:14px}}
-.seg button[aria-pressed="true"]{background:var(--amarelo);color:var(--preto)}
-.seg.claro{background:var(--branco);border:2px solid var(--preto);padding:1px}
-.seg.claro button{color:var(--preto);font-size:14px;padding:7px 14px}
-.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
-.slot{background:var(--papel);border:2px solid var(--linha);border-radius:10px;padding:8px;text-align:left}
-.slot[aria-pressed="true"]{border-color:var(--preto);box-shadow:0 0 0 3px var(--amarelo)}
-.slot small{display:block;font-size:11px;font-weight:600;color:var(--mudo);margin-bottom:4px}
-.slot svg{width:100%;height:auto;display:block}
-label,.rot{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
-input[type=text],textarea{-webkit-appearance:none;appearance:none;width:100%;font:500 17px var(--fonte);padding:11px 13px;border:2px solid var(--preto);border-radius:10px;background:var(--branco);color:var(--preto)}
-.icones{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:8px}
-.ic{min-height:54px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;background:var(--branco);border:2px solid var(--linha);border-radius:10px;display:grid;place-items:center;padding:6px;color:var(--preto)}
-.ic svg{width:30px;height:30px;pointer-events:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ic[aria-pressed="true"]{border-color:var(--preto);background:var(--amarelo)}
-.ic.nada{font-size:11px;font-weight:700;line-height:1.1;text-align:center}
-.fontes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.fonte{background:var(--branco);border:2px solid var(--linha);border-radius:10px;padding:8px 10px;font-size:22px;line-height:1.15;text-align:left;color:var(--preto);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fonte[aria-pressed="true"]{border-color:var(--preto);background:var(--amarelo)}
-.fonte small{display:block;font:500 11px var(--fonte);color:var(--mudo)}
-.fonte[aria-pressed="true"] small{color:var(--preto)}
-.frases{display:flex;flex-wrap:wrap;margin:8px -4px 0}
-.frase{min-height:44px;margin:4px;font:600 14px var(--fonte);background:var(--branco);color:var(--preto);border:2px solid var(--linha);border-radius:99px;padding:7px 13px;text-align:left}
-.frase:hover{border-color:var(--preto)}
-.linha{display:flex;flex-wrap:wrap;margin-bottom:-16px}
-.linha>*{margin:0 24px 16px 0}
-.palco{position:-webkit-sticky;position:sticky;top:16px}
-@media(max-width:820px){.palco{display:contents}.previa{order:-1;position:-webkit-sticky;position:sticky;top:0;z-index:5;background:var(--creme);padding:8px 0 6px}.previa .papel{padding:8px 10px}.previa .papel svg{max-width:300px}.previa h2{margin-bottom:6px}.previa .chk{margin-top:6px}.previa .aviso{min-height:0;margin-top:4px}.res{order:1}}
-.papel{background:var(--papel);border:2px solid var(--preto);border-radius:14px;padding:26px 18px}
-.papel svg{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
-.aviso{margin:10px 0 0;font-size:14px;min-height:21px;color:var(--preto);font-weight:600;border-left:4px solid var(--vermelho);padding-left:8px}
-.aviso:empty{border-left:0;padding-left:0}
-.dica{margin:10px 0 0;font-size:14px;color:var(--mudo)}
-.chk{display:flex;min-height:44px;align-items:center;font-weight:500;font-size:14px;margin-top:12px}
-.chk input{margin:0 10px 0 0;flex:none;width:20px;height:20px;accent-color:var(--preto)}
-.resumo{background:var(--preto);color:var(--branco);border-radius:14px;padding:20px;margin-top:18px}
-.resumo h2{color:var(--amarelo)}
-.resumo pre{margin:0;white-space:pre-wrap;word-break:break-word;font:500 14px/1.55 var(--fonte)}
-.btn{margin-top:14px;font:700 16px var(--fonte);background:var(--amarelo);color:var(--preto);border:0;border-radius:99px;padding:13px 24px}
-.btn:active{transform:scale(.98)}
-.ok{margin:10px 0 0;font-size:14px;min-height:21px}
-a.btn{display:inline-block;text-decoration:none;text-align:center}
-.btn.zap{background:#25D366;color:var(--preto);margin-right:10px}
-.valor{margin:14px 0 0;font:700 20px var(--fonte);color:var(--amarelo)}
-.valor small{display:block;font:500 13px var(--fonte);color:var(--branco);opacity:.8;margin-top:2px}
-.selo{display:flex;align-items:center;justify-content:flex-end;margin-top:36px}
+body{margin:0;background:var(--creme);color:var(--preto);font-family:var(--fonte);font-size:17px;line-height:1.55;overflow-x:hidden}
+.painel{padding:56px max(16px,env(safe-area-inset-right,0px)) 72px max(16px,env(safe-area-inset-left,0px));position:relative}
+.painel>.in{max-width:720px;margin:0 auto;position:relative}
+.escuro{background:var(--preto);color:var(--branco)}
+.amarelo-fundo{background:var(--amarelo)}
+h1,h2{margin:0;font-weight:700;line-height:1.02;text-wrap:balance;letter-spacing:-.02em}
+h1{font-size:52px;font-size:clamp(46px,11vw,84px)}
+h2{font-size:40px;font-size:clamp(36px,8.5vw,60px)}
+p{margin:0}
+.topo-nav{display:flex;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.topo-nav a{display:inline-flex;align-items:center;min-height:44px;margin-right:16px;color:inherit;font-weight:700;font-size:14px;text-decoration:none}
+.topo-nav img{margin-right:8px}
+.tag{display:inline-block;background:var(--amarelo);color:var(--preto);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:99px}
+.grifo{background:linear-gradient(var(--amarelo),var(--amarelo)) 0 92%/0% 14px no-repeat;-webkit-animation:grifo 1s .5s ease forwards;animation:grifo 1s .5s ease forwards}
+@-webkit-keyframes grifo{to{background-size:100% 14px}}
+@keyframes grifo{to{background-size:100% 14px}}
+.lead{font-size:20px;font-size:clamp(18px,3.4vw,22px);max-width:34ch;margin-top:22px}
+.selo{display:flex;align-items:center;justify-content:flex-end;margin-top:40px}
 .selo svg{height:44px;width:42px;margin-right:10px}
-.selo b{display:block;font-size:17px;line-height:1}
+.selo b{display:block;font-size:17px;letter-spacing:.01em;line-height:1}
 .selo small{display:block;font-size:7.4px;letter-spacing:.14em;opacity:.78;margin-top:3px;white-space:nowrap}
+.selo-g{flex-direction:column;justify-content:center;margin-top:56px}
+.selo-g svg{height:96px;width:91px;margin:0 0 14px}
+.selo-g .tx{text-align:center}
+.selo-g b{font-size:34px}.selo-g small{font-size:11px}
+
+/* foco visível: preto no claro, amarelo no escuro; Safari antigo ignora a última regra e sempre mostra */
+:focus{outline:3px solid var(--preto);outline-offset:3px}
+.escuro :focus,.seletor button:focus{outline-color:var(--amarelo)}
+:focus:not(:focus-visible){outline:none}
+
+/* capa */
+.cena{margin-top:36px;max-width:620px}
+.cena svg{width:100%;height:auto;display:block;overflow:visible}
+.cena .st{-webkit-animation:cai .9s cubic-bezier(.3,1.5,.5,1) backwards;animation:cai .9s cubic-bezier(.3,1.5,.5,1) backwards}
+.cena .st:nth-child(1){-webkit-animation-delay:.5s;animation-delay:.5s}.cena .st:nth-child(2){-webkit-animation-delay:.68s;animation-delay:.68s}.cena .st:nth-child(3){-webkit-animation-delay:.86s;animation-delay:.86s}
+.cena .st:nth-child(4){-webkit-animation-delay:1.04s;animation-delay:1.04s}.cena .st:nth-child(5){-webkit-animation-delay:1.22s;animation-delay:1.22s}.cena .st:nth-child(6){-webkit-animation-delay:1.4s;animation-delay:1.4s}
+@-webkit-keyframes cai{from{-webkit-transform:translateY(-300px);opacity:0}30%{opacity:1}}
+@keyframes cai{from{transform:translateY(-300px);opacity:0}30%{opacity:1}}
+.cena .nome{-webkit-animation:surge .8s 2.2s ease backwards;animation:surge .8s 2.2s ease backwards}
+@-webkit-keyframes surge{from{opacity:0;-webkit-transform:translateY(10px)}}
+@keyframes surge{from{opacity:0;transform:translateY(10px)}}
+
+/* seletor */
+.seletor{display:inline-flex;margin-top:10px;padding:4px;background:var(--preto);border-radius:99px}
+.seletor button{min-width:56px;min-height:44px;margin:2px;font:700 16px var(--fonte);background:transparent;color:var(--branco);border:0;border-radius:99px;padding:10px 20px;cursor:pointer}
+.seletor button[aria-pressed="true"]{background:var(--amarelo);color:var(--preto)}
+.rotulo{display:block;margin-top:22px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+
+/* demo */
+.caderno{margin-top:36px;background:var(--creme);color:var(--preto);border-radius:14px;padding:26px 22px 22px;position:relative;overflow:hidden;
+  background-image:repeating-linear-gradient(transparent 0 35px,#cfc8b8 35px 36px);background-position:0 12px;height:300px}
+.caderno:before{content:"";position:absolute;left:44px;top:0;bottom:0;width:2px;background:var(--vermelho);opacity:.55}
+.texto-aluno{position:absolute;left:62px;top:16px;font-size:20px;color:#6b665a;font-weight:500}
+.marca{position:absolute;left:62px;top:116px;width:270px;max-width:62%;height:100px;border:3px solid currentColor;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-weight:700;white-space:nowrap;-webkit-transform:rotate(-2deg);transform:rotate(-2deg);
+  opacity:0;transition:opacity .25s;color:var(--preto);padding:0 10px;overflow:hidden}
+.marca.on{opacity:1}
+.carimbo-demo{position:absolute;left:calc(62px + 270px - 70px);top:-40px;width:90px;transition:transform .45s cubic-bezier(.5,0,.4,1);-webkit-transform:translateY(0);transform:translateY(0)}
+@media(max-width:560px){.carimbo-demo{left:auto;right:12px}}
+.carimbo-demo.baixo{-webkit-transform:translateY(120px);transform:translateY(120px)}
+.carimbo-demo svg{width:100%;height:auto;display:block}
+.chips{display:flex;flex-wrap:wrap;margin:18px -5px 0}
+.chip{min-height:44px;margin:5px;font:600 15px var(--fonte);background:transparent;color:var(--branco);border:2px solid #8a857a;border-radius:99px;padding:8px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--amarelo);border-color:var(--amarelo);color:var(--preto)}
+.nota{margin-top:16px;font-size:14px;opacity:.8}
+
+/* passos */
+.passos{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-gap:18px;gap:18px;counter-reset:p}
+.passos li{display:grid;grid-template-columns:64px 1fr;grid-gap:18px;gap:18px;align-items:start}
+.passos li:before{counter-increment:p;content:counter(p);width:64px;height:64px;line-height:64px;text-align:center;border-radius:50%;background:var(--amarelo);font-weight:700;font-size:28px}
+.passos strong{display:block;font-size:22px;line-height:1.2}
+.passos span{color:#4f4b43;font-size:16px}
+
+/* caixas */
+.modelos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));grid-gap:36px;gap:36px;margin-top:36px}
+@media(max-width:340px){.modelos{grid-template-columns:minmax(0,1fr)}}
+.modelos h3{margin:14px 0 2px;font-size:24px;line-height:1.2}
+.foto{width:100%;height:auto;display:block;border-radius:12px;border:3px solid var(--preto);background:#eef0f4}
+.alterna{position:relative}
+.alterna .topo{position:absolute;top:0;left:0;-webkit-animation:pisca 6s ease-in-out infinite;animation:pisca 6s ease-in-out infinite}
+@-webkit-keyframes pisca{0%,35%{opacity:0}50%,85%{opacity:1}100%{opacity:0}}
+@keyframes pisca{0%,35%{opacity:0}50%,85%{opacity:1}100%{opacity:0}}
+
+/* valores */
+.inclui{margin:26px 0 0;padding:0;list-style:none;font-size:17px;font-weight:500}
+.inclui li{position:relative;padding-left:24px;margin-top:10px}
+.inclui li:before{content:"";position:absolute;left:0;top:.55em;width:11px;height:11px;border-radius:50%;background:var(--preto)}
+.tabela{width:100%;border-collapse:collapse;margin-top:24px;font-size:18px}
+.tabela th,.tabela td{padding:12px 10px;text-align:left;border-bottom:2px solid rgba(27,27,27,.18)}
+.tabela th{font-size:14px;text-transform:uppercase;letter-spacing:.05em}
+.tabela td:first-child{font-weight:700}
+.tabela td.v{font-weight:700;font-size:22px}
+@media(max-width:420px){.tabela{font-size:15px}.tabela td.v{font-size:18px}.tabela th,.tabela td{padding:10px 6px}.tabela th{font-size:12px}}
+.escola{margin-top:26px;padding:18px 20px;border:2px solid currentColor;border-radius:14px;font-size:17px}
+
+/* pedido */
+.pedido{margin:30px 0 0;padding:0;list-style:none;font-size:20px;font-weight:600}
+.pedido li{position:relative;padding-left:26px;margin-top:12px}
+.pedido li:before{content:"";position:absolute;left:0;top:.5em;width:12px;height:12px;border-radius:50%;background:var(--amarelo)}
+
+/* botões */
+.btn{display:inline-block;margin-top:32px;font:700 18px var(--fonte);background:var(--amarelo);color:var(--preto);border:0;border-radius:99px;padding:16px 28px;cursor:pointer;text-decoration:none;text-align:center;min-height:44px}
+.btn:active{-webkit-transform:scale(.98);transform:scale(.98)}
+.btn.zap{background:#25D366}
+.amarelo-fundo .btn{background:var(--preto);color:var(--branco)}
+.botoes{margin-right:-12px}
+.botoes .btn{margin-right:12px}
+.btn-monte{margin-top:26px}
+.aviso{margin-top:14px;font-size:14px;opacity:.85;min-height:1.5em}
+.pe{margin-top:40px;font-size:13px;opacity:.75}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-details{margin-top:22px;font-size:14px}
-summary{cursor:pointer;font-weight:600;padding:12px 0}
+#modelo{display:none;width:100%;margin-top:12px;font:500 15px var(--fonte);padding:10px;border-radius:10px;border:2px solid var(--branco)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{-webkit-animation:none!important;animation:none!important;transition:none!important}
+  .grifo{background-size:100% 14px}
+  .alterna .topo{opacity:0}
+}
 </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<symbol id="robo-c" viewBox="259 242 561 594"><g>
-<rect x="527" y="290" width="25" height="60" fill="#1B1B1B"/><circle cx="540" cy="272" r="30" fill="#E63A2E"/>
-<rect x="259" y="517" width="561" height="148" rx="14" fill="#1B1B1B"/><rect x="294" y="346" width="491" height="490" rx="63" fill="#1B1B1B"/>
-<path d="M630 429H470L407 492V525L470 596H540" fill="none" stroke="#F2B400" stroke-width="44" stroke-linejoin="round"/>
-<path d="M540 596H608L672 660V700L608 763H440" fill="none" stroke="#FFFFFF" stroke-width="44" stroke-linejoin="round"/>
-<circle cx="662" cy="429" r="44" fill="#E63A2E"/><circle cx="417" cy="763" r="44" fill="#FFFFFF"/><circle cx="417" cy="763" r="18" fill="#1B1B1B"/></g></symbol>
-</defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="robo-c" viewBox="259 242 561 594"><g>
+      <rect x="527" y="290" width="25" height="60" fill="#1B1B1B"/><circle cx="540" cy="272" r="30" fill="#E63A2E"/>
+      <rect x="259" y="517" width="561" height="148" rx="14" fill="#1B1B1B"/><rect x="294" y="346" width="491" height="490" rx="63" fill="#1B1B1B"/>
+      <path d="M630 429H470L407 492V525L470 596H540" fill="none" stroke="#F2B400" stroke-width="44" stroke-linejoin="round"/>
+      <path d="M540 596H608L672 660V700L608 763H440" fill="none" stroke="#FFFFFF" stroke-width="44" stroke-linejoin="round"/>
+      <circle cx="662" cy="429" r="44" fill="#E63A2E"/><circle cx="417" cy="763" r="44" fill="#FFFFFF"/><circle cx="417" cy="763" r="18" fill="#1B1B1B"/></g></symbol>
+    <symbol id="robo-e" viewBox="259 242 561 594"><g>
+      <rect x="527" y="290" width="25" height="60" fill="#FFFFFF"/><circle cx="540" cy="272" r="30" fill="#E63A2E"/>
+      <rect x="259" y="517" width="561" height="148" rx="14" fill="#FFFFFF"/><rect x="294" y="346" width="491" height="490" rx="63" fill="#FFFFFF"/>
+      <path d="M630 429H470L407 492V525L470 596H540" fill="none" stroke="#F2B400" stroke-width="44" stroke-linejoin="round"/>
+      <path d="M540 596H608L672 660V700L608 763H440" fill="none" stroke="#1B1B1B" stroke-width="44" stroke-linejoin="round"/>
+      <circle cx="662" cy="429" r="44" fill="#E63A2E"/><circle cx="417" cy="763" r="44" fill="#1B1B1B"/><circle cx="417" cy="763" r="18" fill="#FFFFFF"/></g></symbol>
+    <symbol id="carimbo" viewBox="-6 0 72 100"><g>
+      <rect x="18" y="0" width="24" height="16" rx="6" fill="#1B1B1B"/>
+      <rect x="0" y="10" width="60" height="76" rx="9" fill="currentColor" stroke="#1B1B1B" stroke-width="3"/>
+      <rect x="8" y="22" width="44" height="8" rx="3" fill="#fff" opacity=".9"/>
+      <rect x="-5" y="82" width="70" height="14" rx="4" fill="#1B1B1B"/></g></symbol>
+  </defs>
+</svg>
 
-<div class="wrap">
-  <a href="../" style="display:inline-flex;align-items:center;min-height:44px;margin-right:12px;color:inherit;font-weight:700;text-decoration:none;font-size:14px"><img src="../assets/simbolo-claro.svg" alt="" width="22" height="23" style="margin-right:8px">SAPIENZA</a><span class="tag">Carimbos personalizados</span>
-  <h1>Monte o seu carimbo.</h1>
-  <p class="lead">Escolha a imagem, escreva a frase e veja a letra que mais combina com você. Cada carimbo tem 38 × 14 mm de área de impressão.</p>
-
-  <div class="grid">
-    <div>
-      <section class="bloco">
-        <h2>Tamanho do kit</h2>
-        <div class="seg" id="kit" role="group" aria-label="Quantidade de carimbos">
-          <button type="button" data-n="2" aria-pressed="false">2 carimbos</button><button type="button" data-n="4" aria-pressed="false">4 carimbos</button><button type="button" data-n="6" aria-pressed="true">6 carimbos</button>
-        </div>
-      </section>
-      <section class="bloco">
-        <h2>Seus carimbos</h2>
-        <div class="slots" id="slots" role="group" aria-label="Escolha o carimbo para editar"></div>
-        <p class="dica">Toque num carimbo para editar. Os exemplos podem ser trocados por completo.</p>
-      </section>
-      <section class="bloco">
-        <h2>Imagem</h2>
-        <div class="seg claro" id="grupos" role="group" aria-label="Tipo de imagem" style="margin-bottom:12px"></div>
-        <div class="icones" id="icones" role="group" aria-label="Imagens"></div>
-        <div class="linha" style="margin-top:12px">
-          <div><p class="rot" style="margin-top:0">Lado da imagem</p>
-            <div class="seg claro" id="lado" role="group" aria-label="Lado da imagem"><button type="button" data-v="esq">Esquerda</button><button type="button" data-v="dir">Direita</button></div></div>
-          <div><p class="rot" style="margin-top:0">Moldura</p>
-            <div class="seg claro" id="moldura" role="group" aria-label="Moldura"><button type="button" data-v="0">Sem</button><button type="button" data-v="1">Simples</button><button type="button" data-v="2">Dupla</button></div></div>
-        </div>
-      </section>
-      <section class="bloco">
-        <h2>Frase</h2>
-        <label for="t1" style="margin-top:0">Linha 1</label>
-        <input type="text" id="t1" maxlength="22" autocomplete="off">
-        <label for="t2">Linha 2 (opcional)</label>
-        <input type="text" id="t2" maxlength="22" autocomplete="off">
-        <p class="dica">Frases curtas ficam maiores e mais fáceis de ler no carimbo.</p>
-        <p class="rot">Frases prontas</p>
-        <div class="seg claro" id="cats" role="group" aria-label="Tipo de frase"></div>
-        <div class="frases" id="frases"></div>
-      </section>
-      <section class="bloco">
-        <h2>Estilo da letra</h2>
-        <div class="fontes" id="fontes" role="group" aria-label="Estilo da letra"></div>
-      </section>
-      <section class="bloco">
-        <h2>Seu pedido</h2>
-        <label for="cliente" style="margin-top:0">Nome na caixa (opcional)</label>
-        <input type="text" id="cliente" maxlength="26" autocomplete="off" placeholder="Ex.: Prof.ª Ana">
-        <p class="rot">Modelo da caixa</p>
-        <div class="seg claro" id="caixa" role="group" aria-label="Modelo da caixa"><button type="button" data-v="aberta">Caixa aberta</button><button type="button" data-v="estojo">Estojo com tampa</button></div>
-        <label for="cidade">Cidade ou CEP (para o frete)</label>
-        <input type="text" id="cidade" maxlength="40" autocomplete="off">
-      </section>
-    </div>
-
-    <div class="palco">
-      <div class="previa">
-      <h2>Prévia do carimbo <span id="qual" style="font-weight:600;color:var(--mudo)"></span></h2>
-      <div class="papel"><svg id="prev" viewBox="-1.5 -1.5 41 17" role="img" aria-label="Prévia do carimbo"></svg></div>
-      <p class="aviso" id="aviso" role="status"></p>
-      <label class="chk"><input type="checkbox" id="espelho"> Ver a matriz espelhada, como vai para a produção</label>
-      </div>
-      <div class="res">
-
-      <div class="resumo">
-        <h2>Resumo do pedido</h2>
-        <pre id="resumo"></pre>
-        <p class="valor" id="valor"></p>
-        <a class="btn zap" id="zap" href="#" target="_blank" rel="noopener">Enviar pelo WhatsApp<span class="sr"> (abre em nova aba)</span></a>
-        <button class="btn" id="copiar" type="button">Copiar pedido</button>
-        <p class="ok" id="ok" role="status"></p>
-        <textarea id="area" readonly rows="8" hidden style="margin-top:10px"></textarea>
-      </div>
-      <p class="dica">Toque em Enviar pelo WhatsApp: a mensagem já vai pronta. Antes de produzir, você confirma a arte final e combina o prazo.</p>
-
-      <details>
-        <summary>Já tenho um código de pedido</summary>
-        <label for="cod">Cole o código (começa com SAP1:)</label>
-        <input type="text" id="cod" autocomplete="off">
-        <button class="btn" id="carregar" type="button" style="margin-top:10px">Carregar</button>
-        <p class="ok" id="okc" role="status"></p>
-      </details>
-      <div class="selo"><svg viewBox="0 0 561 594" aria-hidden="true"><use href="#robo-c" xlink:href="#robo-c"/></svg><div><b>SAPIENZA</b><small>TECNOLOGIA EDUCACIONAL</small></div></div>
-      </div>
-    </div>
+<!-- 1. CAPA -->
+<section class="painel">
+  <div class="in">
+    <nav class="topo-nav" aria-label="Navegação"><a href="../"><img src="../assets/simbolo-claro.svg" alt="" width="22" height="23">SAPIENZA</a></nav>
+    <span class="tag">Kit de carimbos personalizados</span>
+    <h1 style="margin-top:24px">Carimbe do <span class="grifo">seu jeito.</span></h1>
+    <p class="lead"><span id="n-lead">6</span> carimbos com o seu nome e os dizeres que você escolher, numa caixa de MDF cortada a laser.</p>
+    <span class="rotulo" id="rot">Quantos carimbos no kit?</span>
+    <div class="seletor" role="group" aria-labelledby="rot" id="seletor"><button type="button" data-n="2" aria-pressed="false">2</button><button type="button" data-n="4" aria-pressed="false">4</button><button type="button" data-n="6" aria-pressed="true">6</button></div>
+    <div><a class="btn btn-monte" href="monte/?n=6" data-monte>Monte o seu carimbo</a></div>
+    <div class="cena"><svg id="cena" viewBox="0 0 600 330" role="img" aria-label="Carimbos entrando numa caixa de MDF com o texto Seu nome aqui"></svg></div>
+    <div class="selo"><svg viewBox="0 0 561 594" aria-hidden="true"><use href="#robo-c" xlink:href="#robo-c"/></svg><div><b>SAPIENZA</b><small>TECNOLOGIA EDUCACIONAL</small></div></div>
   </div>
-</div>
+</section>
+
+<!-- 2. DEMO -->
+<section class="painel escuro">
+  <div class="in">
+    <h2>Seu nome e suas frases, <span style="color:var(--amarelo)">no caderno.</span></h2>
+    <p class="lead">Escolha uma marca e veja o carimbo trabalhando. A área de impressão tem 38 × 14 mm.</p>
+    <div class="caderno" id="caderno" aria-live="polite">
+      <div class="texto-aluno" aria-hidden="true">Minha redação sobre o recreio</div>
+      <div class="marca" id="marca"></div>
+      <div class="carimbo-demo" id="cdemo" aria-hidden="true"><svg viewBox="-6 0 72 100"><use href="#carimbo" xlink:href="#carimbo"/></svg></div>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Exemplos de marcas"></div>
+    <a class="btn" href="monte/?n=6" data-monte style="margin-top:20px">Monte o seu carimbo</a>
+    <p class="nota">Exemplos. Você escolhe o nome e as frases dos seus <span class="n-kit">6</span> carimbos. Nomes e frases curtas ficam melhores.</p>
+    <div class="selo"><svg viewBox="0 0 561 594" aria-hidden="true"><use href="#robo-e" xlink:href="#robo-e"/></svg><div><b>SAPIENZA</b><small>TECNOLOGIA EDUCACIONAL</small></div></div>
+  </div>
+</section>
+
+<!-- 3. COMO PEDIR -->
+<section class="painel">
+  <div class="in">
+    <h2>Como pedir</h2>
+    <ol class="passos">
+      <li><div><strong>Escolha o nome</strong><span>Como você quer ser chamada: Prof.ª Ana, Tia Bia, Turma 5º B.</span></div></li>
+      <li><div><strong>Escolha os dizeres</strong><span>Elogios e recados do dia a dia. Frases curtas ficam melhores.</span></div></li>
+      <li><div><strong>Confirme a arte</strong><span>Você vê como o carimbo vai ficar antes de produzir.</span></div></li>
+      <li><div><strong>Receba o kit</strong><span><span class="n-kit">6</span> carimbos Stilo numa caixa de MDF cortada a laser.</span></div></li>
+    </ol>
+    <div class="selo"><svg viewBox="0 0 561 594" aria-hidden="true"><use href="#robo-c" xlink:href="#robo-c"/></svg><div><b>SAPIENZA</b><small>TECNOLOGIA EDUCACIONAL</small></div></div>
+  </div>
+</section>
+
+<!-- 4. CAIXAS -->
+<section class="painel amarelo-fundo">
+  <div class="in">
+    <h2>Vem numa caixa de MDF.</h2>
+    <div class="modelos">
+      <div>
+        <img class="foto" id="img-caixa" src="../assets/carimbos/kit6-caixa.jpg" alt="Caixa aberta de MDF com os carimbos encaixados e o texto Seu nome aqui" width="860" height="347">
+        <h3>Caixa aberta</h3><p>Pega e usa. Cada carimbo no seu lugar.</p>
+      </div>
+      <div>
+        <div class="alterna"><img class="foto" id="img-fechado" src="../assets/carimbos/kit6-fechado.jpg" alt="Estojo de MDF com a tampa fechada" width="860" height="347"><img class="foto topo" id="img-aberto" src="../assets/carimbos/kit6-aberto.jpg" alt="Estojo de MDF com a tampa aberta mostrando os carimbos" width="860" height="347"></div>
+        <h3>Estojo com tampa</h3><p>A tampa desliza e protege o kit.</p>
+      </div>
+    </div>
+    <a class="btn" href="monte/?n=6" data-monte>Monte o seu carimbo</a>
+    <div class="selo"><svg viewBox="0 0 561 594" aria-hidden="true"><use href="#robo-c" xlink:href="#robo-c"/></svg><div><b>SAPIENZA</b><small>TECNOLOGIA EDUCACIONAL</small></div></div>
+  </div>
+</section>
+
+<!-- 5. VALORES -->
+<section class="painel">
+  <div class="in">
+    <h2>O que vem e quanto custa.</h2>
+    <ul class="inclui">
+      <li>Carimbos automáticos compatíveis com Stilo, área de impressão de 38 × 14 mm</li>
+      <li>Tinta preta</li>
+      <li>Caixa de MDF 3 mm cortada a laser, com o seu nome gravado</li>
+      <li>Você aprova a arte antes de produzir</li>
+    </ul>
+    <table class="tabela">
+      <thead><tr><th scope="col">Kit</th><th scope="col">Caixa aberta</th><th scope="col">Estojo com tampa</th></tr></thead>
+      <tbody>
+        <tr><td>2 carimbos</td><td class="v">R$ 79</td><td class="v">R$ 89</td></tr>
+        <tr><td>4 carimbos</td><td class="v">R$ 139</td><td class="v">R$ 154</td></tr>
+        <tr><td>6 carimbos</td><td class="v">R$ 189</td><td class="v">R$ 209</td></tr>
+      </tbody>
+    </table>
+    <p class="nota">Frete à parte. Prazo combinado no WhatsApp depois que você confirmar a arte.</p>
+    <div class="escola"><strong>Para a turma ou a escola?</strong> Kits em quantidade têm condição especial, e escolas podem pedir orçamento. Chame no WhatsApp.</div>
+    <a class="btn" href="monte/?n=6" data-monte>Monte o seu carimbo</a>
+    <div class="selo"><svg viewBox="0 0 561 594" aria-hidden="true"><use href="#robo-c" xlink:href="#robo-c"/></svg><div><b>SAPIENZA</b><small>TECNOLOGIA EDUCACIONAL</small></div></div>
+  </div>
+</section>
+
+<!-- 6. PEDIDO -->
+<section class="painel escuro">
+  <div class="in">
+    <h2>Peça o seu kit</h2>
+    <p class="lead" style="margin-top:18px">O jeito mais fácil: monte o seu carimbo e toque em <strong>Enviar pelo WhatsApp</strong>. O pedido vai pronto, com a arte e o modelo da caixa.</p>
+    <p class="lead" style="margin-top:14px">Prefere conversar antes? Mande no WhatsApp:</p>
+    <ul class="pedido">
+      <li>O nome que vai no carimbo</li>
+      <li>Os dizeres que você quer</li>
+      <li>Caixa aberta ou estojo com tampa</li>
+      <li>Kit de 2, 4 ou 6 carimbos</li>
+      <li>Cidade ou CEP para o frete</li>
+    </ul>
+    <div class="botoes">
+      <a class="btn" href="monte/?n=6" data-monte>Monte o seu carimbo</a>
+      <a class="btn zap" id="zap-folder" href="https://wa.me/5511953592189" target="_blank" rel="noopener">Chamar no WhatsApp<span class="sr"> (abre em nova aba)</span></a>
+      <button class="btn" id="copiar" type="button">Copiar modelo de mensagem</button>
+    </div>
+    <p class="aviso" id="aviso" role="status"></p>
+    <textarea id="modelo" readonly rows="6" aria-label="Modelo de mensagem">Oi! Quero o kit de 6 carimbos personalizados.
+Nome no carimbo:
+Dizeres:
+Modelo da caixa (aberta ou estojo com tampa):
+Cidade/CEP (para o frete):</textarea>
+    <div class="selo selo-g"><svg viewBox="0 0 561 594" aria-hidden="true"><use href="#robo-e" xlink:href="#robo-e"/></svg><div class="tx"><b>SAPIENZA</b><small>TECNOLOGIA EDUCACIONAL</small></div></div>
+    <p class="pe" style="text-align:center">Feito sob encomenda a laser.</p>
+  </div>
+</section>
 
 <script>
 (function(){
-  var W=38,H=14,TINTA='#1B1B1B';
-  var FONTES=[
-    ['Poppins',700,'Poppins'],['Fredoka',600,'Fredoka'],['Baloo 2',700,'Baloo'],['Chewy',400,'Chewy'],
-    ['Patrick Hand',400,'Patrick Hand'],['Caveat',700,'Caveat'],['Pacifico',400,'Pacifico'],['Dancing Script',700,'Dancing Script'],
-    ['Lobster',400,'Lobster'],['Permanent Marker',400,'Marcador'],['Bebas Neue',400,'Bebas Neue'],['Playfair Display',700,'Playfair']];
-  var ICONES={
-    estrela:'<polygon points="12,2.5 14.9,9 22,9.6 16.6,14.3 18.2,21.3 12,17.6 5.8,21.3 7.4,14.3 2,9.6 9.1,9"/>',
-    coracao:'<path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/>',
-    certo:'<circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/>',
-    sorriso:'<circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.8 2.5 2.5 4 2.5s3-.7 4-2.5"/><circle cx="9" cy="9.5" r=".9"/><circle cx="15" cy="9.5" r=".9"/>',
-    lapis:'<path d="M4 20l1.2-4.2L16.8 4.2a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8z"/><path d="M14.5 6.5l3 3"/>',
-    livro:'<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5z"/><path d="M20 5.5V20.5A1.5 1.5 0 0 0 18.5 19H13V4h5.5C19.3 4 20 4.7 20 5.5z"/>',
-    medalha:'<circle cx="12" cy="15" r="5"/><path d="M8 3l4 7M16 3l-4 7"/>',
-    trofeu:'<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7M10 17h4"/>',
-    lampada:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
-    foguete:'<path d="M12 3c3 2 5 5.5 5 9l-2 3H9l-2-3c0-3.5 2-7 5-9z"/><path d="M9 15l-2 4M15 15l2 4"/><circle cx="12" cy="9.5" r="1.3"/>',
-    planeta:'<circle cx="12" cy="12" r="5"/><ellipse cx="12" cy="12" rx="10" ry="3.2" transform="rotate(-25 12 12)"/>',
-    sol:'<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',
-    flor:'<circle cx="12" cy="12" r="2.4"/><circle cx="12" cy="6.4" r="3.2"/><circle cx="12" cy="17.6" r="3.2"/><circle cx="6.4" cy="12" r="3.2"/><circle cx="17.6" cy="12" r="3.2"/>',
-    maca:'<path d="M12 7c-2-2-6-1.5-6 3 0 4 2.5 9 5 9 .6 0 .9-.3 1-.3s.4.3 1 .3c2.5 0 5-5 5-9 0-4.5-4-5-6-3z"/><path d="M12 7c0-2 1-3.5 3-4"/>',
-    bandeira:'<path d="M5 21V4M5 4h12l-2.5 4L17 12H5"/>',
-    musica:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
-    robo:'<rect x="5" y="8" width="14" height="11" rx="2.5"/><path d="M12 8V4"/><circle cx="12" cy="3.4" r="1"/><circle cx="9.3" cy="13" r="1.1"/><circle cx="14.7" cy="13" r="1.1"/><path d="M2.5 12v3M21.5 12v3"/>',
-    mundo:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
-    regua:'<rect x="2" y="8" width="20" height="8" rx="1.2"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/>',
-    letraA:'<path d="M5 19L12 5l7 14M8 14h8"/>',
-    olhos:'<ellipse cx="7.3" cy="12" rx="4.3" ry="6.2"/><ellipse cx="16.7" cy="12" rx="4.3" ry="6.2"/><circle cx="8.6" cy="13.2" r="2"/><circle cx="15.4" cy="13.2" r="2"/>',
-    caderno:'<rect x="6" y="3" width="14" height="18" rx="2"/><path d="M3 7h5M3 11h5M3 15h5M3 19h5M11 8h6M11 12h6"/>',
-    casa:'<path d="M3 11l9-8 9 8"/><path d="M5.5 9.5V21h13V9.5"/><path d="M10 21v-6h4v6"/>',
-    livros:'<rect x="3" y="15" width="18" height="5" rx="1"/><rect x="5" y="10" width="15" height="5" rx="1"/><rect x="4" y="5" width="16" height="5" rx="1"/>',
-    joinha:'<path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z"/><path d="M7 11l4-8a2.5 2.5 0 0 1 2.5 3L13 10h6a2 2 0 0 1 2 2.3l-1.3 6.5A2 2 0 0 1 17.7 20H7"/>',
-    abelha:'<ellipse cx="12" cy="14" rx="6.5" ry="5"/><path d="M9.2 9.5v9M12 9v10M14.8 9.5v9"/><path d="M9 9.3C6 3.5 11 2.8 11 8M15 9.3c3-5.8-2-6.5-2-1.3"/><path d="M18.5 14h2.5"/>',
-    coruja:'<path d="M5 4l3 2h8l3-2v10a7 7 0 0 1-14 0z"/><circle cx="9" cy="10" r="2.2"/><circle cx="15" cy="10" r="2.2"/><path d="M12 12.5l-1 2h2z"/>',
-    ursinho:'<circle cx="12" cy="13" r="7"/><circle cx="6.5" cy="6.5" r="2.4"/><circle cx="17.5" cy="6.5" r="2.4"/><ellipse cx="12" cy="15.3" rx="2.8" ry="2.1"/><circle cx="9.3" cy="11.5" r=".8"/><circle cx="14.7" cy="11.5" r=".8"/>',
-    carinhaAmor:'<circle cx="12" cy="12" r="9"/><path d="M6.7 10c0-1.6 2.2-1.9 2.4-.4.2-1.5 2.4-1.2 2.4.4 0 1.5-2.4 2.8-2.4 2.8S6.7 11.5 6.7 10z"/><path d="M12.5 10c0-1.6 2.2-1.9 2.4-.4.2-1.5 2.4-1.2 2.4.4 0 1.5-2.4 2.8-2.4 2.8S12.5 11.5 12.5 10z"/><path d="M8 15c1 1.7 2.4 2.4 4 2.4s3-.7 4-2.4"/>',
-    carinhaTriste:'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r=".9"/><circle cx="15" cy="10" r=".9"/><path d="M8.2 16.5c1-1.7 2.3-2.4 3.8-2.4s2.8.7 3.8 2.4"/>',
-    carinhaUau:'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="9.5" r=".9"/><circle cx="15" cy="9.5" r=".9"/><circle cx="12" cy="15.5" r="2.2"/>',
-    carinhaRiso:'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="9.5" r=".9"/><circle cx="15" cy="9.5" r=".9"/><path d="M7 13h10a5 5 0 0 1-10 0z"/>',
-    estrelas:'<polygon points="9.0,6.4 11.0,11.2 16.2,11.7 12.3,15.1 13.5,20.1 9.0,17.4 4.5,20.1 5.7,15.1 1.8,11.7 7.0,11.2"/><polygon points="18.2,2.9 19.1,5.1 21.5,5.3 19.7,6.9 20.3,9.2 18.2,8.0 16.1,9.2 16.7,6.9 14.9,5.3 17.3,5.1"/><polygon points="19.2,14.0 19.9,15.8 21.9,15.9 20.4,17.2 20.8,19.1 19.2,18.1 17.6,19.1 18.0,17.2 16.5,15.9 18.5,15.8"/><polygon points="4.6,2.4 5.2,3.8 6.7,3.9 5.5,4.9 5.9,6.4 4.6,5.6 3.3,6.4 3.7,4.9 2.5,3.9 4.0,3.8"/>',
-    gatinho:'<path d="M4.5 11V4.5L9 7.5h6l4.5-3V11a7.5 7.5 0 0 1-15 0z"/><circle cx="9.2" cy="12" r=".9"/><circle cx="14.8" cy="12" r=".9"/><path d="M11 14.5h2l-1 1.1z"/><path d="M2 14l3-.5M2 17l3-1M22 14l-3-.5M22 17l-3-1"/>',
-    cachorrinho:'<circle cx="12" cy="12.5" r="6"/><path d="M6.4 8.5C3 7 2.5 13 4.7 15.5M17.6 8.5c3.4-1.5 3.9 4.5 1.7 7"/><circle cx="9.7" cy="11.5" r=".9"/><circle cx="14.3" cy="11.5" r=".9"/><ellipse cx="12" cy="14.3" rx="1.8" ry="1.2"/><path d="M12 15.5v1.4M10.2 17.2c1 .8 2.6.8 3.6 0"/>',
-    coelho:'<circle cx="12" cy="15" r="5.5"/><ellipse cx="9" cy="6" rx="2" ry="4.6"/><ellipse cx="15" cy="6" rx="2" ry="4.6"/><circle cx="10" cy="14.2" r=".9"/><circle cx="14" cy="14.2" r=".9"/><path d="M11.2 16.4h1.6l-.8 1z"/>',
-    panda:'<circle cx="12" cy="12.5" r="7.5"/><circle cx="5.8" cy="6" r="2.5"/><circle cx="18.2" cy="6" r="2.5"/><ellipse cx="9" cy="11.5" rx="1.8" ry="2.4"/><ellipse cx="15" cy="11.5" rx="1.8" ry="2.4"/><ellipse cx="12" cy="15" rx="1.4" ry="1"/><path d="M10.6 17.2c.8.8 2 .8 2.8 0"/>',
-    dinossauro:'<path d="M2.5 18C2.5 12 7 9 12 9s8 2 9.5 6c.5 1.5 1.2 3 0 3z"/><path d="M6 10.5L7.5 6l2 4M10 9.5l2-5 2 5M14.5 10l2-4 1.8 4.5"/><path d="M7 18v3M16 18v3"/><circle cx="19.2" cy="14.2" r=".8"/>',
-    unicornio:'<circle cx="12" cy="14" r="6"/><path d="M12 1.5L10.3 8.2h3.4z"/><path d="M7 10L6.2 6.8l3 1.4M17 10l.8-3.2-3 1.4"/><circle cx="9.8" cy="13.5" r=".9"/><circle cx="14.2" cy="13.5" r=".9"/><path d="M10 16.5c1 .8 3 .8 4 0"/>',
-    peixinho:'<path d="M3 12c3-5 9-5 12 0-3 5-9 5-12 0z"/><path d="M15 12l6-4v8z"/><circle cx="7.4" cy="11" r=".9"/>',
-    tartaruga:'<path d="M4.5 15.5a7.5 7.5 0 0 1 15 0z"/><path d="M12 8.2v7.3M8 15.5l1.5-4.3M16 15.5l-1.5-4.3"/><path d="M7 15.5V19M16 15.5V19M19.5 14.5c1.4-.9 2.7-.4 2.7 1"/>',
-    passarinho:'<circle cx="11" cy="13" r="6.3"/><path d="M17.2 11.5l4 1.8-4 1.8z"/><path d="M7.5 13c1.8 3.2 5 3.2 6.2 0"/><circle cx="13.8" cy="10.8" r=".9"/><path d="M9.5 19.3v2M12.5 19.3v2M10 6.8c-.3-2 .8-3.2 2-3.4"/>',
-    joaninha:'<circle cx="12" cy="13.5" r="7"/><path d="M12 6.5v14"/><path d="M7.6 7a5 5 0 0 1 8.8 0"/><circle cx="8.5" cy="12" r=".9"/><circle cx="15.5" cy="12" r=".9"/><circle cx="9" cy="16.5" r=".9"/><circle cx="15" cy="16.5" r=".9"/><path d="M10 4L9 2M14 4l1-2"/>',
-    borboleta:'<path d="M12 12C8 3 2 5 3.5 11c.5 3 5 3 8.5 1z"/><path d="M12 12c4-9 10-7 8.5-1-.5 3-5 3-8.5 1z"/><path d="M12 12.5C7 12 4 18 7.5 20c2.5 1 4.5-3 4.5-7.5M12 12.5c5-.5 8 5.5 4.5 7.5-2.5 1-4.5-3-4.5-7.5"/><path d="M12 9v10M12 9c-.5-2-1-3-2-3.5M12 9c.5-2 1-3 2-3.5"/>',
-    astronauta:'<circle cx="12" cy="11" r="8"/><rect x="7" y="7.5" width="10" height="7" rx="3.5"/><path d="M9.5 10l1-1"/><path d="M6 19.5c1-2 3-3 6-3s5 1 6 3"/>',
-    fantasminha:'<path d="M5 21V11a7 7 0 0 1 14 0v10l-2.3-2-2.4 2-2.3-2-2.3 2-2.4-2z"/><circle cx="9.5" cy="11" r=".9"/><circle cx="14.5" cy="11" r=".9"/><circle cx="12" cy="14.3" r="1.2"/>',
-    monstrinho:'<path d="M5 12a7 7 0 0 1 14 0v7H5z"/><circle cx="12" cy="11" r="3"/><circle cx="12.5" cy="11" r="1.1"/><path d="M7.5 6.5L6 3M16.5 6.5L18 3M8 16l1.5 1.5L11 16l1.5 1.5L14 16l1.5 1.5L17 16M8 19v2M16 19v2"/>',
-    pinguim:'<path d="M12 3.5c-3.5 0-6 3-6 7.5v4c0 3 2 5.5 6 5.5s6-2.5 6-5.5v-4c0-4.5-2.5-7.5-6-7.5z"/><path d="M12 11c-2 0-3.5 1.5-3.5 4s1.5 4.5 3.5 4.5 3.5-2 3.5-4.5S14 11 12 11z"/><circle cx="10" cy="7.5" r=".8"/><circle cx="14" cy="7.5" r=".8"/><path d="M11 9h2l-1 1.4z"/><path d="M8.5 21.5L7 22.5M15.5 21.5l1.5 1"/>',
-    leao:'<circle cx="12" cy="12" r="9.2"/><circle cx="12" cy="12.5" r="4.6"/><circle cx="10.4" cy="11.5" r=".8"/><circle cx="13.6" cy="11.5" r=".8"/><path d="M11 13.6h2l-1 1.1z"/><circle cx="5" cy="5.5" r="1.8"/><circle cx="19" cy="5.5" r="1.8"/>',
-    sapo:'<path d="M3.5 14c0-3 2-5 5-5h7c3 0 5 2 5 5 0 3-2.5 5-8.5 5S3.5 17 3.5 14z"/><circle cx="8" cy="8" r="2.8"/><circle cx="16" cy="8" r="2.8"/><circle cx="8" cy="8" r=".8"/><circle cx="16" cy="8" r=".8"/><path d="M8 15.5c2.5 1.8 5.5 1.8 8 0"/>',
-    baleia:'<path d="M2 13c0-4 4-7 9-7 4 0 6 2 7 4l4-3c.3 3-.5 5-2 6.5-1.5 2-4 3.5-9 3.5-5 0-9-1.5-9-4z"/><path d="M10 6C9.5 4 8 3.5 7 3M10 6c.5-2 2-2.5 3-3"/><circle cx="6" cy="12" r=".9"/>',
-    polvo:'<path d="M6 11a6 6 0 0 1 12 0c0 2-1 3-1 3H7s-1-1-1-3z"/><path d="M7 14c-1 2-2.5 3-3.5 3M10 14v4c0 1.5-1 2-2 2M14 14v4c0 1.5 1 2 2 2M17 14c1 2 2.5 3 3.5 3"/><circle cx="9.5" cy="10" r=".9"/><circle cx="14.5" cy="10" r=".9"/>',
-    raposa:'<path d="M3 4l5.5 3.5h7L21 4l-1.3 9.5L12 21 4.300 13.5z"/><circle cx="9" cy="12" r=".9"/><circle cx="15" cy="12" r=".9"/><path d="M11 17h2l-1 1.200z"/>'
-  };
-  var NOMES={estrela:'Estrela',coracao:'Coração',certo:'Certo',sorriso:'Sorriso',lapis:'Lápis',livro:'Livro',medalha:'Medalha',trofeu:'Troféu',lampada:'Lâmpada',foguete:'Foguete',planeta:'Planeta',sol:'Sol',flor:'Flor',maca:'Maçã',bandeira:'Bandeira',musica:'Música',robo:'Robô',mundo:'Mundo',regua:'Régua',letraA:'Letra A',olhos:'Olhos',caderno:'Caderno',casa:'Casa',livros:'Livros',joinha:'Joinha',abelha:'Abelha',coruja:'Coruja',ursinho:'Ursinho',carinhaAmor:'Carinha apaixonada',carinhaTriste:'Carinha triste',carinhaUau:'Carinha uau',carinhaRiso:'Carinha rindo',estrelas:'Estrelinhas',gatinho:'Gatinho',cachorrinho:'Cachorrinho',coelho:'Coelho',panda:'Panda',dinossauro:'Dinossauro',unicornio:'Unicórnio',peixinho:'Peixinho',tartaruga:'Tartaruga',passarinho:'Passarinho',joaninha:'Joaninha',borboleta:'Borboleta',astronauta:'Astronauta',fantasminha:'Fantasminha',monstrinho:'Monstrinho',pinguim:'Pinguim',leao:'Leão',sapo:'Sapo',baleia:'Baleia',polvo:'Polvo',raposa:'Raposa'};
-  var EXEMPLOS=[
-    {t1:'Prof.ª Ana',t2:'',f:'Fredoka',i:'estrela',l:'esq',m:1},
-    {t1:'Parabéns!',t2:'',f:'Baloo 2',i:'medalha',l:'esq',m:0},
-    {t1:'Muito bem!',t2:'',f:'Poppins',i:'certo',l:'esq',m:0},
-    {t1:'Ficou lindo!',t2:'',f:'Pacifico',i:'coracao',l:'esq',m:0},
-    {t1:'Para casa!',t2:'',f:'Patrick Hand',i:'livro',l:'esq',m:2},
-    {t1:'Continue assim!',t2:'',f:'Caveat',i:'foguete',l:'dir',m:0}];
-  var FRASES={"Elogios": [["Muito bem!", "", "certo"], ["Parabéns!", "", "medalha"], ["Amei!", "", "coracao"], ["Ficou lindo!", "", "coracao"], ["Excelente!", "", "estrela"], ["Ótimo trabalho!", "Parabéns!", "trofeu"], ["Adorei seu capricho!", "", "carinhaAmor"], ["Você brilha como", "estrelinhas!", "estrelas"], ["Cada dia você", "brilha mais!", "estrela"], ["Que orgulho!", "Amo você!", "coracao"], ["Continue assim!", "", "foguete"], ["Bom fim de", "semana!", "sol"], ["Visto!", "", "olhos"], ["Seu caderno", "está lindo!", "caderno"], ["Ótima semana!", "", "sol"], ["Sucesso!", "Continue assim", "joinha"]], "Correção e avisos": [["Para casa", "____/____/____", "casa"], ["Lição incompleta!", "", "livros"], ["Atividade", "incompleta", "caderno"], ["Faltou", "", "carinhaTriste"], ["Que pena!", "Você faltou!", "carinhaTriste"], ["Não fez a tarefa", "____/____/____", ""], ["Não fez o dever!", "", ""], ["Preste mais", "atenção!", "olhos"], ["Você pode", "melhorar!", "joinha"], ["Melhore sua letra!", "", "lapis"], ["Corrigido", "no quadro!", "certo"], ["Correção na lousa", "", "livros"], ["Não terminou!", "", ""]], "Datas e nome": [["Em aula", "____/____/____", ""], ["Visto", "____/____/____", "certo"], ["Entregue em", "____/____/____", "caderno"], ["Prof.ª ________", "", ""]]};
-  var cat='Elogios';
-  var GRUPOS={"Escola": ["estrela", "coracao", "certo", "lapis", "livro", "livros", "caderno", "regua", "letraA", "medalha", "trofeu", "lampada", "bandeira", "casa", "joinha", "olhos", "estrelas", "musica", "mundo", "maca", "sol", "flor", "planeta"], "Bichinhos": ["gatinho", "cachorrinho", "coelho", "panda", "ursinho", "leao", "raposa", "sapo", "pinguim", "coruja", "passarinho", "abelha", "joaninha", "borboleta", "peixinho", "baleia", "polvo", "tartaruga"], "Personagens": ["robo", "foguete", "astronauta", "dinossauro", "unicornio", "fantasminha", "monstrinho"], "Carinhas": ["sorriso", "carinhaAmor", "carinhaRiso", "carinhaUau", "carinhaTriste"]};
-  var grupo='Escola';
-  var N=6,sel=0,slots=[];
-  var extra={c:'',b:'aberta',u:''},ZAP='5511953592189';
-  var PRECOS={aberta:{2:79,4:139,6:189},estojo:{2:89,4:154,6:209}};
-  var CAIXAS={aberta:'caixa aberta',estojo:'estojo com tampa'};
-  function reais(v){return 'R$ '+v.toFixed(2).replace('.',',')}
+  var ZAP='5511953592189';
+  var TODOS=[["Prof.ª Ana","#E63A2E"],["Parabéns!","#1B1B1B"],["Muito bem!","#1B1B1B"],["Ficou lindo!","#1B1B1B"],["Amei!","#1B1B1B"],["Para casa!","#1B1B1B"]];
+  var itens=TODOS.slice(0,6),N=6;
   var $=function(id){return document.getElementById(id)};
-  var cv=document.createElement('canvas').getContext('2d');
-  function dados(i){return slots[i]||(slots[i]=JSON.parse(JSON.stringify(EXEMPLOS[i%6])))}
-  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-  function pesoDe(f){for(var k=0;k<FONTES.length;k++)if(FONTES[k][0]===f)return FONTES[k][1];return 700}
-  function larg100(txt,f){cv.font=pesoDe(f)+' 100px "'+f+'", sans-serif';return cv.measureText(txt).width}
+  var marca=$('marca'),cd=$('cdemo'),chips=$('chips');
+  var reduz=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var timers=[],auto=true;
+  function limpa(){for(var k=0;k<timers.length;k++)clearTimeout(timers[k]);timers=[]}
+  /* altura proporcional a 38 x 14 mm, sem aspect-ratio */
+  function ajusta(){
+    marca.style.height=Math.round(marca.offsetWidth*14/38)+'px';
+    var s=34;marca.style.fontSize=s+'px';
+    while(marca.scrollWidth>marca.clientWidth&&s>12){s--;marca.style.fontSize=s+'px'}
+  }
+  function mostra(i){
+    marca.textContent=itens[i][0];marca.style.color=itens[i][1];cd.style.color=itens[i][1];ajusta();
+    [].forEach.call(chips.children,function(c,k){c.setAttribute('aria-pressed',String(k===i))});
+  }
+  function ciclo(i){
+    limpa();mostra(i);
+    if(reduz){marca.className='marca on';return}
+    marca.className='marca';cd.className='carimbo-demo';
+    timers.push(setTimeout(function(){cd.className='carimbo-demo baixo'},400));
+    timers.push(setTimeout(function(){marca.className='marca on'},850));
+    timers.push(setTimeout(function(){cd.className='carimbo-demo'},1100));
+    timers.push(setTimeout(function(){if(auto)ciclo((i+1)%itens.length)},3000));
+  }
+  function montaChips(){
+    chips.innerHTML='';
+    itens.forEach(function(it,i){
+      var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=it[0];
+      b.addEventListener('click',function(){auto=false;ciclo(i)});chips.appendChild(b);
+    });
+  }
+  var CORES=['#F2B400','#E63A2E','#1B1B1B'];
+  function cena(n){
+    var bw=n*90+32,x0=300-bw/2,g='',i;
+    for(i=0;i<n;i++)g+='<g class="st" style="color:'+CORES[i%3]+'"><use href="#carimbo" xlink:href="#carimbo" x="'+(x0+25+i*90)+'" y="40" width="72" height="100"/></g>';
+    var fs=Math.min(40,Math.floor((bw-30)/8.2));
+    $('cena').innerHTML='<g>'+g+'</g><rect x="'+x0+'" y="118" width="'+bw+'" height="190" rx="14" fill="#E6DFCF" stroke="#1B1B1B" stroke-width="5"/><text class="nome" x="300" y="'+(213+fs*0.35)+'" text-anchor="middle" font-family="Poppins,Arial,sans-serif" font-weight="700" font-size="'+fs+'" fill="#1B1B1B">Seu nome aqui</text>';
+  }
+  var ta=$('modelo');
+  function define(n){
+    N=n;itens=TODOS.slice(0,n);auto=true;
+    [].forEach.call(document.querySelectorAll('#seletor button'),function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-n')===n))});
+    $('n-lead').textContent=n;
+    [].forEach.call(document.querySelectorAll('.n-kit'),function(e){e.textContent=n});
+    [].forEach.call(document.querySelectorAll('[data-monte]'),function(a){a.href='monte/?n='+n});
+    $('img-caixa').src='../assets/carimbos/kit'+n+'-caixa.jpg';
+    $('img-fechado').src='../assets/carimbos/kit'+n+'-fechado.jpg';
+    $('img-aberto').src='../assets/carimbos/kit'+n+'-aberto.jpg';
+    ta.value=ta.value.replace(/kit de \d+ carimbos/,'kit de '+n+' carimbos');
+    $('zap-folder').href='https://wa.me/'+ZAP+'?text='+encodeURIComponent(ta.value);
+    cena(n);montaChips();ciclo(0);
+  }
+  [].forEach.call(document.querySelectorAll('#seletor button'),function(b){b.addEventListener('click',function(){define(+b.getAttribute('data-n'))})});
+  try{define(6)}catch(e){}
+  window.addEventListener('resize',function(){try{ajusta()}catch(e){}});
+  try{document.fonts.ready.then(ajusta)}catch(e){}
 
-  /* layout em milímetros: mesma regra usada depois para gerar o arquivo de produção */
-  function layout(d){
-    var pad=1.2,ins=d.m===0?0:(d.m===1?1.1:2.3),x0=pad+ins,y0=pad+ins,w=W-2*x0,h=H-2*y0;
-    var temIc=d.i&&ICONES[d.i],linhas=[d.t1,d.t2].filter(function(s){return s&&s.trim()});
-    var S=temIc?h:0,gap=temIc&&linhas.length?1.2:0,tx=x0,tw=w;
-    var ix=x0;
-    if(temIc&&linhas.length){tw=w-S-gap;if(d.l==='esq')tx=x0+S+gap;else{tx=x0;ix=x0+tw+gap}}
-    else if(temIc){ix=x0+(w-S)/2}
-    var r={ins:ins,x0:x0,y0:y0,w:w,h:h,ic:temIc?{x:ix,y:y0,s:S}:null,linhas:[],tam:0};
-    if(linhas.length){
-      var mx=0;linhas.forEach(function(s){mx=Math.max(mx,larg100(s,d.f)/100)});
-      var tam=Math.min(tw/mx,h/(linhas.length*1.12),8);
-      r.tam=tam;
-      linhas.forEach(function(s,k){var cy=y0+h*(k+0.5)/linhas.length;r.linhas.push({s:s,x:tx+tw/2,y:cy+0.34*tam})});
-    }
-    return r;
-  }
-  function svgCarimbo(d,espelho){
-    var r=layout(d),s='';
-    if(d.m>=1)s+='<rect x="0.6" y="0.6" width="'+(W-1.2)+'" height="'+(H-1.2)+'" rx="1.2" fill="none" stroke="'+TINTA+'" stroke-width="0.5"/>';
-    if(d.m===2)s+='<rect x="1.7" y="1.7" width="'+(W-3.4)+'" height="'+(H-3.4)+'" rx=".6" fill="none" stroke="'+TINTA+'" stroke-width="0.3"/>';
-    if(r.ic)s+='<g transform="translate('+r.ic.x+','+r.ic.y+') scale('+(r.ic.s/24)+')" fill="none" stroke="'+TINTA+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+ICONES[d.i]+'</g>';
-    r.linhas.forEach(function(l){s+='<text x="'+l.x.toFixed(2)+'" y="'+l.y.toFixed(2)+'" text-anchor="middle" font-family="\''+d.f+'\', sans-serif" font-weight="'+pesoDe(d.f)+'" font-size="'+r.tam.toFixed(2)+'" fill="'+TINTA+'">'+esc(l.s)+'</text>'});
-    return espelho?'<g transform="translate('+W+',0) scale(-1,1)">'+s+'</g>':s;
-  }
-  function miniatura(d){return '<svg viewBox="-1 -1 40 16" aria-hidden="true"><rect x="-1" y="-1" width="40" height="16" fill="#fff"/>'+svgCarimbo(d,false)+'</svg>'}
-
-  function desenha(){
-    var d=dados(sel),esp=$('espelho').checked;
-    $('prev').innerHTML='<rect x="-1.5" y="-1.5" width="41" height="17" fill="#FBFAF6"/><rect x="0" y="0" width="'+W+'" height="'+H+'" fill="none" stroke="#d8d2c3" stroke-width="0.12" stroke-dasharray="0.6 0.6"/>'+svgCarimbo(d,esp);
-    $('qual').textContent='· carimbo '+(sel+1)+' de '+N;
-    $('prev').setAttribute('aria-label','Prévia do carimbo '+(sel+1)+': '+descreve(d));
-    var r=layout(d),av='';
-    if(r.linhas.length&&r.tam<2.3)av='Letra pequena: pode ficar difícil de ler. Tente uma frase mais curta ou uma letra mais estreita.';
-    $('aviso').textContent=av;
-    renderSlots();renderResumo();
-  }
-  function descreve(d){var t=[d.t1,d.t2].filter(function(s){return s&&s.trim()}).join(' / ')||'sem texto';return t+', '+(d.i?NOMES[d.i]:'sem imagem')}
-  function renderSlots(){
-    var h='';
-    for(var i=0;i<N;i++)h+='<button type="button" class="slot" data-i="'+i+'" aria-pressed="'+(i===sel)+'" aria-label="'+esc('Carimbo '+(i+1)+': '+descreve(dados(i)))+'"><small>Carimbo '+(i+1)+'</small>'+miniatura(dados(i))+'</button>';
-    $('slots').innerHTML=h;
-  }
-  function renderFrases(){
-    var c='';Object.keys(FRASES).forEach(function(k){c+='<button type="button" data-c="'+esc(k)+'" aria-pressed="'+(k===cat)+'">'+esc(k)+'</button>'});
-    $('cats').innerHTML=c;
-    var h='';FRASES[cat].forEach(function(f,i){h+='<button type="button" class="frase" data-k="'+i+'">'+esc(f[0]+(f[1]?' '+f[1]:''))+'</button>'});
-    $('frases').innerHTML=h;
-  }
-  function renderControles(){
-    renderFrases();
-    var d=dados(sel);
-    $('t1').value=d.t1;$('t2').value=d.t2;
-    var h='<button type="button" class="ic nada" data-i="" aria-pressed="'+(!d.i)+'" aria-label="Sem imagem">Sem imagem</button>';
-    if(d.i){for(var g in GRUPOS){if(GRUPOS[g].indexOf(d.i)>=0&&!window.__gm){grupo=g}}}
-    var gt='';Object.keys(GRUPOS).forEach(function(g){gt+='<button type="button" data-g="'+g+'" aria-pressed="'+(g===grupo)+'">'+g+'</button>'});$('grupos').innerHTML=gt;
-    GRUPOS[grupo].forEach(function(k){h+='<button type="button" class="ic" data-i="'+k+'" aria-pressed="'+(d.i===k)+'" aria-label="'+NOMES[k]+'" title="'+NOMES[k]+'"><svg viewBox="0 0 24 24">'+ICONES[k]+'</svg></button>'});
-    $('icones').innerHTML=h;
-    var f='';FONTES.forEach(function(x){f+='<button type="button" class="fonte" data-f="'+x[0]+'" aria-pressed="'+(d.f===x[0])+'" style="font-family:\''+x[0]+'\',sans-serif;font-weight:'+x[1]+'">'+esc(d.t1||'Seu nome')+'<small style="font-family:var(--fonte)">'+x[2]+'</small></button>'});
-    $('fontes').innerHTML=f;
-    [].forEach.call($('lado').children,function(b){b.setAttribute('aria-pressed',String(b.dataset.v===d.l))});
-    [].forEach.call($('moldura').children,function(b){b.setAttribute('aria-pressed',String(+b.dataset.v===d.m))});
-    [].forEach.call($('kit').children,function(b){b.setAttribute('aria-pressed',String(+b.dataset.n===N))});
-  }
-  var LADOS={esq:'imagem à esquerda',dir:'imagem à direita'},MOLD=['sem moldura','moldura simples','moldura dupla'];
-  function resumoTexto(){
-    var l=['Kit de '+N+' carimbos personalizados','Caixa: '+CAIXAS[extra.b]+' · Tinta preta'];
-    if(extra.c.trim())l.push('Nome na caixa: '+extra.c.trim());
-    if(extra.u.trim())l.push('Cidade/CEP: '+extra.u.trim());
-    for(var i=0;i<N;i++){var d=dados(i),t=[d.t1,d.t2].filter(Boolean).join(' / ')||'(sem texto)';
-      l.push((i+1)+') "'+t+'" · letra '+d.f+' · '+(d.i?NOMES[d.i]+', '+LADOS[d.l]:'sem imagem')+' · '+MOLD[d.m])}
-    l.push('Valor do kit: '+reais(PRECOS[extra.b][N])+' (frete à parte)');
-    return l.join('\n');
-  }
-  function codigo(){
-    var o={k:N,s:[],c:extra.c.trim(),b:extra.b,u:extra.u.trim()};for(var i=0;i<N;i++){var d=dados(i);o.s.push([d.t1,d.t2,d.f,d.i,d.l,d.m])}
-    return 'SAP1:'+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
-  }
-  function renderResumo(){
-    var txt=resumoTexto()+'\n\nCódigo: '+codigo();
-    $('resumo').textContent=txt;
-    $('valor').innerHTML=reais(PRECOS[extra.b][N])+'<small>Kit de '+N+' com '+CAIXAS[extra.b]+'. Frete à parte. Prazo combinado no WhatsApp.</small>';
-    $('zap').href='https://wa.me/'+ZAP+'?text='+encodeURIComponent('Oi! Quero fazer este pedido de carimbos personalizados:\n\n'+txt);
-  }
-  function marcaExtra(){
-    [].forEach.call($('caixa').children,function(b){b.setAttribute('aria-pressed',String(b.dataset.v===extra.b))});
-  }
-  $('cliente').addEventListener('input',function(){extra.c=this.value;renderResumo()});
-  $('cidade').addEventListener('input',function(){extra.u=this.value;renderResumo()});
-  $('caixa').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;extra.b=b.dataset.v;marcaExtra();renderResumo()});
-
-
-  function acha(e,sel){var n=e.target;while(n&&n!==e.currentTarget){if(n.nodeType===1){var m=n.matches||n.msMatchesSelector||n.webkitMatchesSelector;if(m&&m.call(n,sel))return n}n=n.parentNode}return null}
-  /* eventos */
-  function defineKit(n){N=n;if(sel>=N)sel=0;renderControles();desenha()}
-  window.sapEditorKit=defineKit;
-  $('kit').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;defineKit(+b.dataset.n);if(window.sapFolderKit)window.sapFolderKit(N)});
-  $('slots').addEventListener('click',function(e){var b=acha(e,'.slot');if(!b)return;sel=+b.dataset.i;renderControles();desenha()});
-  $('grupos').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;grupo=b.dataset.g;window.__gm=1;renderControles();window.__gm=0});
-  $('icones').addEventListener('click',function(e){var b=acha(e,'.ic');if(!b)return;dados(sel).i=b.dataset.i;renderControles();desenha()});
-  $('fontes').addEventListener('click',function(e){var b=acha(e,'.fonte');if(!b)return;dados(sel).f=b.dataset.f;renderControles();aguarda(dados(sel).f);desenha()});
-  $('lado').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;dados(sel).l=b.dataset.v;renderControles();desenha()});
-  $('moldura').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;dados(sel).m=+b.dataset.v;renderControles();desenha()});
-  $('t1').addEventListener('input',function(){dados(sel).t1=this.value;desenha();[].forEach.call(document.querySelectorAll('.fonte'),function(b){b.firstChild.nodeValue=dados(sel).t1||'Seu nome'})});
-  $('t2').addEventListener('input',function(){dados(sel).t2=this.value;desenha()});
-  $('cats').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;cat=b.dataset.c;renderFrases()});
-  $('frases').addEventListener('click',function(e){var b=acha(e,'.frase');if(!b)return;var f=FRASES[cat][+b.dataset.k],d=dados(sel);d.t1=f[0];d.t2=f[1];d.i=f[2];renderControles();desenha()});
-  $('espelho').addEventListener('change',desenha);
-  function aguarda(f){try{document.fonts.load(pesoDe(f)+' 40px "'+f+'"').then(desenha)}catch(e){}}
   $('copiar').addEventListener('click',function(){
-    var txt=$('resumo').textContent;
-    function ok(){$('ok').textContent='Pedido copiado. Cole no WhatsApp.';$('area').hidden=true}
-    function plano(){var a=$('area'),feito=false;a.hidden=false;a.value=txt;a.readOnly=false;a.focus();a.select();try{a.setSelectionRange(0,txt.length)}catch(e){}try{feito=document.execCommand('copy')}catch(e){}a.readOnly=true;if(feito){a.blur();ok()}else{$('ok').textContent='Selecione o texto abaixo e copie.'}}
+    var av=$('aviso'),txt=ta.value;
+    function ok(){av.textContent='Mensagem copiada. Cole no WhatsApp e preencha.';ta.style.display='none'}
+    function plano(){
+      var feito=false;ta.style.display='block';ta.readOnly=false;ta.focus();ta.select();
+      try{ta.setSelectionRange(0,txt.length)}catch(e){}
+      try{feito=document.execCommand('copy')}catch(e){}
+      ta.readOnly=true;
+      if(feito){ta.blur();ok()}else{av.textContent='Selecione o texto abaixo e copie.'}
+    }
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,plano)}else{plano()}
   });
-  $('carregar').addEventListener('click',function(){
-    try{
-      var c=$('cod').value.trim();if(c.indexOf('SAP1:')!==0)throw 0;
-      var o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5)))));
-      if(!o||!o.s||[2,4,6].indexOf(o.k)<0)throw 0;
-      N=o.k;slots=[];o.s.forEach(function(a,i){slots[i]={t1:String(a[0]||'').slice(0,22),t2:String(a[1]||'').slice(0,22),f:a[2],i:ICONES[a[3]]?a[3]:'',l:a[4]==='dir'?'dir':'esq',m:[0,1,2].indexOf(+a[5])<0?0:+a[5]}});
-      extra={c:String(o.c||'').slice(0,26),b:o.b==='estojo'?'estojo':'aberta',u:String(o.u||'').slice(0,40)};$('cliente').value=extra.c;$('cidade').value=extra.u;marcaExtra();sel=0;renderControles();desenha();$('okc').textContent='Pedido carregado.';
-    }catch(e){$('okc').textContent='Código inválido. Confira se copiou tudo, começando por SAP1:'}
-  });
-
-  try{marcaExtra();renderControles();desenha()}catch(err){var av=$('aviso');if(av)av.textContent='Algo falhou ao carregar. Atualize a página ou abra no Chrome. Se continuar, chame no WhatsApp.'}
-  try{FONTES.forEach(function(x){aguarda(x[0])})}catch(e){}
-  try{document.fonts.ready.then(function(){desenha()})}catch(e){}
 })();
 </script>
 </body>

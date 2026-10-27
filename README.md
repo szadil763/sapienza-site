@@ -6,7 +6,8 @@ Site estático da **Sapienza, Tecnologia Educacional** (Guarulhos/SP). Primeira 
 
 ```
 index.html            home: logo, segmentos, como funciona e botão de WhatsApp
-carimbos/index.html   editor de carimbos (arquivo único: HTML + CSS + JS)
+carimbos/index.html   vitrine animada do kit (caixas, demonstração, preços)
+carimbos/monte/       editor de carimbos (arquivo único: HTML + CSS + JS)
 assets/               logo, símbolo (claro e escuro) e imagem de compartilhamento
 sitemap.xml, robots.txt
 docs/                 roadmap e briefing de continuidade
@@ -26,7 +27,7 @@ python3 -m http.server 8000
 
 1. Criar o repositório (sugestão: `sapienza-site`) e enviar esta pasta.
 2. Em **Settings > Pages**, escolher **Deploy from a branch**, branch `main`, pasta `/ (root)`.
-3. O site fica em `https://<usuario>.github.io/<repositorio>/`. O editor fica em `.../carimbos/`.
+3. O site fica em `https://<usuario>.github.io/<repositorio>/`. A vitrine fica em `.../carimbos/` e o editor em `.../carimbos/monte/`.
 
 Todos os caminhos são relativos, então funciona em subpasta e, depois, em domínio próprio.
 
@@ -34,7 +35,7 @@ Todos os caminhos são relativos, então funciona em subpasta e, depois, em dom�
 
 O editor não envia nada para servidor. A cliente monta o carimbo, o editor gera um resumo com um **código de pedido** (`SAP1:` + base64) e abre o WhatsApp com a mensagem pronta. Os dados ficam só no navegador dela e na conversa. O código de pedido é lido pelo projeto da laser (LaserLink) para gerar o arquivo de corte.
 
-## Onde mudar o quê (em `carimbos/index.html`)
+## Onde mudar o quê (em `carimbos/monte/index.html`)
 
 | O quê | Onde |
 |---|---|
@@ -43,6 +44,8 @@ O editor não envia nada para servidor. A cliente monta o carimbo, o editor gera
 | Ícones | objeto `ICONES`, nomes em `NOMES`, grupos em `GRUPOS` |
 | Frases prontas | objeto `FRASES` |
 | Fontes | lista `FONTES` e o `<link>` do Google Fonts |
+
+Os preços também aparecem na tabela da vitrine (`carimbos/index.html`): ao mudar, mudar nos dois lugares. As fotos das caixas ficam em `assets/carimbos/`. O botão "Monte o seu carimbo" abre o editor já com o tamanho de kit escolhido (`monte/?n=2`, `4` ou `6`).
 
 Preços e prazo são decididos pelo Adilson. Não inventar valores.
 
