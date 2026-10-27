@@ -5,9 +5,10 @@ Site estático da **Sapienza, Tecnologia Educacional** (Guarulhos/SP). Primeira 
 ## Estrutura
 
 ```
-index.html            home: logo, posicionamento e cartões dos segmentos
+index.html            home: logo, segmentos, como funciona e botão de WhatsApp
 carimbos/index.html   editor de carimbos (arquivo único: HTML + CSS + JS)
-assets/               logo e símbolo (claro e escuro)
+assets/               logo, símbolo (claro e escuro) e imagem de compartilhamento
+sitemap.xml, robots.txt
 docs/                 roadmap e briefing de continuidade
 CLAUDE.md             regras para o Claude Code
 ```
@@ -44,6 +45,12 @@ O editor não envia nada para servidor. A cliente monta o carimbo, o editor gera
 | Fontes | lista `FONTES` e o `<link>` do Google Fonts |
 
 Preços e prazo são decididos pelo Adilson. Não inventar valores.
+
+## Endereço do site (SEO e domínio)
+
+As tags `og:url`, `og:image` e `canonical`, o `sitemap.xml` e o `robots.txt` precisam do endereço completo. Hoje usam `https://szadil763.github.io/sapienza-site/`. Ao trocar para domínio próprio, procurar esse endereço em todos os arquivos e substituir pelo novo. A imagem de compartilhamento é `assets/og-sapienza.png` (1200 × 630).
+
+O `robots.txt` só é lido pelos buscadores na raiz do domínio, então ele passa a valer de fato com o domínio próprio.
 
 ## Identidade visual
 

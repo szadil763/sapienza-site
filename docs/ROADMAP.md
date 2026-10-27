@@ -4,6 +4,10 @@
 - Home com logo e cartões dos segmentos.
 - Editor de carimbos (kit de 2, 4 ou 6, caixa aberta ou estojo, ícones, frases, 12 fontes, moldura, imagem à esquerda ou direita, código de pedido, WhatsApp).
 - Correção de compatibilidade dos ícones (iPhone e navegadores antigos).
+- Revisão para Safari 12 a 14 (gap em flex, padding-block, clamp, sticky, cópia do pedido).
+- Home com "Como funciona" e botão fixo de WhatsApp.
+- Acessibilidade: foco visível, alvos de 44 px, contraste, descrições de texto.
+- SEO básico: título e descrição por página, Open Graph, sitemap e robots.
 
 ## Próximos
 1. Publicar no GitHub Pages e testar o link em iPhone e Android.

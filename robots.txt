@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://szadil763.github.io/sapienza-site/sitemap.xml
