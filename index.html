@@ -10,13 +10,13 @@
 <style>
 :root{--creme:#F2EFE8;--preto:#1B1B1B;--branco:#fff;--amarelo:#F2B400;--vermelho:#E63A2E;--mudo:#6b665a;--fonte:'Poppins','Montserrat',Arial,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--creme);color:var(--preto);font-family:var(--fonte);line-height:1.5;padding-inline:max(16px,env(safe-area-inset-left,0px))}
-.wrap{max-width:1040px;margin:0 auto;padding-block:28px 48px}
-header{display:flex;align-items:center;gap:12px}
-header img{width:44px;height:auto}
+body{margin:0;background:var(--creme);color:var(--preto);font-family:var(--fonte);line-height:1.5;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;padding-top:28px;padding-bottom:110px}
+header{display:flex;align-items:center}
+header img{width:44px;height:47px;margin-right:12px}
 header b{font-size:20px;letter-spacing:.04em;display:block;line-height:1.1}
 header small{font-size:10px;letter-spacing:.14em;color:var(--mudo);display:block}
-h1{font-size:clamp(34px,7vw,58px);line-height:1.04;letter-spacing:-.02em;margin:48px 0 0;max-width:16ch;text-wrap:balance}
+h1{font-size:40px;font-size:clamp(34px,7vw,58px);line-height:1.04;letter-spacing:-.02em;margin:48px 0 0;max-width:16ch;text-wrap:balance}
 .lead{max-width:46ch;margin:14px 0 0;font-size:18px}
 h2{font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin:56px 0 14px}
 .segs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
@@ -28,6 +28,17 @@ a.seg.on{box-shadow:6px 6px 0 var(--amarelo)}
 a.seg.on .tag{background:var(--amarelo)}
 .seg.breve{border-style:dashed;border-color:#b9b2a0;background:transparent}
 a.seg:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px}
+/* como funciona */
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.passo{background:var(--branco);border:2px solid var(--preto);border-radius:14px;padding:18px}
+.passo .num{display:inline-block;width:36px;height:36px;line-height:36px;text-align:center;border-radius:50%;background:var(--amarelo);font-weight:700;font-size:17px}
+.passo h3{margin:10px 0 6px;font-size:19px}
+.passo p{margin:0;font-size:14px;color:var(--mudo)}
+.passo a{color:var(--preto);font-weight:600}
+/* botao fixo de WhatsApp */
+.zap{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:10;display:flex;align-items:center;min-height:52px;padding:0 20px 0 16px;border-radius:99px;background:#25D366;color:var(--preto);font-weight:700;font-size:16px;text-decoration:none;border:2px solid var(--preto);box-shadow:0 4px 0 var(--preto)}
+.zap svg{width:24px;height:24px;margin-right:8px;flex:none}
+.zap:active{-webkit-transform:translateY(2px);transform:translateY(2px);box-shadow:0 2px 0 var(--preto)}
 footer{margin-top:56px;padding-top:18px;border-top:2px solid var(--preto);font-size:14px;color:var(--mudo)}
 </style>
 </head>
@@ -61,7 +72,28 @@ footer{margin-top:56px;padding-top:18px;border-top:2px solid var(--preto);font-s
     </div>
   </div>
 
+  <h2>Como funciona</h2>
+  <ol class="passos">
+    <li class="passo">
+      <span class="num" aria-hidden="true">1</span>
+      <h3>Monte</h3>
+      <p>No <a href="carimbos/">editor de carimbos</a>, escolha o tamanho do kit e monte cada carimbo: imagem, frase e estilo da letra. A prévia aparece na hora.</p>
+    </li>
+    <li class="passo">
+      <span class="num" aria-hidden="true">2</span>
+      <h3>Envie no WhatsApp</h3>
+      <p>O pedido sai pronto, com o resumo e um código. É só tocar em enviar. Antes de produzir, você confirma a arte final e combinamos prazo e frete.</p>
+    </li>
+    <li class="passo">
+      <span class="num" aria-hidden="true">3</span>
+      <h3>Receba</h3>
+      <p>Os carimbos são feitos na nossa máquina a laser e vão na caixa de MDF que você escolheu. A entrega ou o envio é combinado na conversa.</p>
+    </li>
+  </ol>
+
   <footer>Sapienza, Tecnologia Educacional. Guarulhos, SP.</footer>
 </div>
+
+<a class="zap" href="https://wa.me/5511953592189?text=Oi!%20Vim%20pelo%20site%20da%20Sapienza." target="_blank" rel="noopener" aria-label="Conversar no WhatsApp (abre em nova aba)"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.4-1.6-1-2-2l1-1-1-2z"/></svg>WhatsApp</a>
 </body>
 </html>
