@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="259 242 561 594" role="img" aria-label="Sapienza">
+<rect x="527" y="290" width="25" height="60" fill="#1B1B1B"/><circle cx="540" cy="272" r="30" fill="#E63A2E"/>
+<rect x="259" y="517" width="561" height="148" rx="14" fill="#1B1B1B"/><rect x="294" y="346" width="491" height="490" rx="63" fill="#1B1B1B"/>
+<path d="M630 429H470L407 492V525L470 596H540" fill="none" stroke="#F2B400" stroke-width="44" stroke-linejoin="round"/>
+<path d="M540 596H608L672 660V700L608 763H440" fill="none" stroke="#FFFFFF" stroke-width="44" stroke-linejoin="round"/>
+<circle cx="662" cy="429" r="44" fill="#E63A2E"/><circle cx="417" cy="763" r="44" fill="#FFFFFF"/><circle cx="417" cy="763" r="18" fill="#1B1B1B"/></svg>
