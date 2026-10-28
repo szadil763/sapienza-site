@@ -151,7 +151,9 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
         <input type="text" id="t1" maxlength="22" autocomplete="off">
         <label for="t2">Linha 2 (opcional)</label>
         <input type="text" id="t2" maxlength="22" autocomplete="off">
-        <p class="dica">Frases curtas ficam maiores e mais fáceis de ler no carimbo.</p>
+        <label for="t3">Linha 3 (opcional)</label>
+        <input type="text" id="t3" maxlength="22" autocomplete="off">
+        <p class="dica">Frases curtas ficam maiores e mais fáceis de ler no carimbo. Com 3 linhas a letra fica menor: prefira palavras curtas.</p>
         <p class="rot">Frases prontas</p>
         <div class="seg claro" id="cats" role="group" aria-label="Tipo de frase"></div>
         <div class="frases" id="frases"></div>
@@ -280,12 +282,12 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
   };
   var NOMES={estrela:'Estrela',coracao:'Coração',certo:'Certo',sorriso:'Sorriso',lapis:'Lápis',livro:'Livro',medalha:'Medalha',trofeu:'Troféu',lampada:'Lâmpada',foguete:'Foguete',planeta:'Planeta',sol:'Sol',flor:'Flor',maca:'Maçã',bandeira:'Bandeira',musica:'Música',robo:'Robô',mundo:'Mundo',regua:'Régua',letraA:'Letra A',olhos:'Olhos',caderno:'Caderno',casa:'Casa',livros:'Livros',joinha:'Joinha',abelha:'Abelha',coruja:'Coruja',ursinho:'Ursinho',carinhaAmor:'Carinha apaixonada',carinhaTriste:'Carinha triste',carinhaUau:'Carinha uau',carinhaRiso:'Carinha rindo',estrelas:'Estrelinhas',gatinho:'Gatinho',cachorrinho:'Cachorrinho',coelho:'Coelho',panda:'Panda',dinossauro:'Dinossauro',unicornio:'Unicórnio',peixinho:'Peixinho',tartaruga:'Tartaruga',passarinho:'Passarinho',joaninha:'Joaninha',borboleta:'Borboleta',astronauta:'Astronauta',fantasminha:'Fantasminha',monstrinho:'Monstrinho',pinguim:'Pinguim',leao:'Leão',sapo:'Sapo',baleia:'Baleia',polvo:'Polvo',raposa:'Raposa',formiguinha:'Formiguinha',corujinha:'Corujinha formada',lagartinha:'Lagartinha',caracol:'Caracol',elefante:'Elefante',macaquinho:'Macaquinho',porquinho:'Porquinho',pintinho:'Pintinho',ovelhinha:'Ovelhinha'};
   var EXEMPLOS=[
-    {t1:'Prof.ª Ana',t2:'',f:'Fredoka',i:'estrela',l:'esq',m:1},
-    {t1:'Parabéns!',t2:'',f:'Baloo 2',i:'medalha',l:'esq',m:0},
-    {t1:'Muito bem!',t2:'',f:'Poppins',i:'certo',l:'esq',m:0},
-    {t1:'Ficou lindo!',t2:'',f:'Pacifico',i:'coracao',l:'esq',m:0},
-    {t1:'Para casa!',t2:'',f:'Patrick Hand',i:'livro',l:'esq',m:2},
-    {t1:'Continue assim!',t2:'',f:'Caveat',i:'foguete',l:'dir',m:0}];
+    {t1:'Prof.ª Ana',t2:'',t3:'',f:'Fredoka',i:'estrela',l:'esq',m:1},
+    {t1:'Parabéns!',t2:'',t3:'',f:'Baloo 2',i:'medalha',l:'esq',m:0},
+    {t1:'Muito bem!',t2:'',t3:'',f:'Poppins',i:'certo',l:'esq',m:0},
+    {t1:'Ficou lindo!',t2:'',t3:'',f:'Pacifico',i:'coracao',l:'esq',m:0},
+    {t1:'Para casa!',t2:'',t3:'',f:'Patrick Hand',i:'livro',l:'esq',m:2},
+    {t1:'Continue assim!',t2:'',t3:'',f:'Caveat',i:'foguete',l:'dir',m:0}];
   var FRASES={"Elogios": [["Muito bem!", "", "certo"], ["Parabéns!", "", "medalha"], ["Amei!", "", "coracao"], ["Ficou lindo!", "", "coracao"], ["Excelente!", "", "estrela"], ["Ótimo trabalho!", "Parabéns!", "trofeu"], ["Adorei seu capricho!", "", "carinhaAmor"], ["Você brilha como", "estrelinhas!", "estrelas"], ["Cada dia você", "brilha mais!", "estrela"], ["Que orgulho!", "Amo você!", "coracao"], ["Continue assim!", "", "foguete"], ["Bom fim de", "semana!", "sol"], ["Visto!", "", "olhos"], ["Seu caderno", "está lindo!", "caderno"], ["Ótima semana!", "", "sol"], ["Sucesso!", "Continue assim", "joinha"]], "Correção e avisos": [["Para casa", "____/____/____", "casa"], ["Lição incompleta!", "", "livros"], ["Atividade", "incompleta", "caderno"], ["Faltou", "", "carinhaTriste"], ["Que pena!", "Você faltou!", "carinhaTriste"], ["Não fez a tarefa", "____/____/____", ""], ["Não fez o dever!", "", ""], ["Preste mais", "atenção!", "olhos"], ["Você pode", "melhorar!", "joinha"], ["Melhore sua letra!", "", "lapis"], ["Corrigido", "no quadro!", "certo"], ["Correção na lousa", "", "livros"], ["Não terminou!", "", ""]], "Datas e nome": [["Em aula", "____/____/____", ""], ["Visto", "____/____/____", "certo"], ["Entregue em", "____/____/____", "caderno"], ["Prof.ª ________", "", ""]]};
   var cat='Elogios';
   var GRUPOS={"Escola": ["estrela", "coracao", "certo", "lapis", "livro", "livros", "caderno", "regua", "letraA", "medalha", "trofeu", "lampada", "bandeira", "casa", "joinha", "olhos", "estrelas", "musica", "mundo", "maca", "sol", "flor", "planeta"], "Bichinhos": ["gatinho", "cachorrinho", "coelho", "panda", "ursinho", "leao", "raposa", "sapo", "pinguim", "coruja", "passarinho", "abelha", "joaninha", "borboleta", "peixinho", "baleia", "polvo", "tartaruga", "porquinho", "pintinho", "ovelhinha", "macaquinho", "elefante", "caracol", "lagartinha"], "Personagens": ["formiguinha", "corujinha", "robo", "foguete", "astronauta", "dinossauro", "unicornio", "fantasminha", "monstrinho"], "Carinhas": ["sorriso", "carinhaAmor", "carinhaRiso", "carinhaUau", "carinhaTriste"]};
@@ -306,7 +308,7 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
   /* layout em milímetros: mesma regra usada depois para gerar o arquivo de produção */
   function layout(d){
     var pad=1.2,ins=d.m===0?0:(d.m===1?1.1:2.3),x0=pad+ins,y0=pad+ins,w=W-2*x0,h=H-2*y0;
-    var temIc=d.i&&ICONES[d.i],linhas=[d.t1,d.t2].filter(function(s){return s&&s.trim()});
+    var temIc=d.i&&ICONES[d.i],linhas=[d.t1,d.t2,d.t3].filter(function(s){return s&&s.trim()});
     var S=temIc?h:0,gap=temIc&&linhas.length?1.2:0,tx=x0,tw=w;
     var ix=x0;
     if(temIc&&linhas.length){tw=w-S-gap;if(d.l==='esq')tx=x0+S+gap;else{tx=x0;ix=x0+tw+gap}}
@@ -340,7 +342,7 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     $('aviso').textContent=av;
     renderSlots();renderResumo();
   }
-  function descreve(d){var t=[d.t1,d.t2].filter(function(s){return s&&s.trim()}).join(' / ')||'sem texto';return t+', '+(d.i?NOMES[d.i]:'sem imagem')}
+  function descreve(d){var t=[d.t1,d.t2,d.t3].filter(function(s){return s&&s.trim()}).join(' / ')||'sem texto';return t+', '+(d.i?NOMES[d.i]:'sem imagem')}
   function renderSlots(){
     var h='';
     for(var i=0;i<N;i++)h+='<button type="button" class="slot" data-i="'+i+'" aria-pressed="'+(i===sel)+'" aria-label="'+esc('Carimbo '+(i+1)+': '+descreve(dados(i)))+'"><small>Carimbo '+(i+1)+'</small>'+miniatura(dados(i))+'</button>';
@@ -355,7 +357,7 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
   function renderControles(){
     renderFrases();
     var d=dados(sel);
-    $('t1').value=d.t1;$('t2').value=d.t2;
+    $('t1').value=d.t1;$('t2').value=d.t2;$('t3').value=d.t3||'';
     var h='<button type="button" class="ic nada" data-i="" aria-pressed="'+(!d.i)+'" aria-label="Sem imagem">Sem imagem</button>';
     if(d.i){for(var g in GRUPOS){if(GRUPOS[g].indexOf(d.i)>=0&&!window.__gm){grupo=g}}}
     var gt='';Object.keys(GRUPOS).forEach(function(g){gt+='<button type="button" data-g="'+g+'" aria-pressed="'+(g===grupo)+'">'+g+'</button>'});$('grupos').innerHTML=gt;
@@ -372,13 +374,13 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     var l=['Kit de '+N+' carimbos personalizados','Caixa: '+CAIXAS[extra.b]+' · Tinta preta'];
     if(extra.c.trim())l.push('Nome na caixa: '+extra.c.trim());
     if(extra.u.trim())l.push('Cidade/CEP: '+extra.u.trim());
-    for(var i=0;i<N;i++){var d=dados(i),t=[d.t1,d.t2].filter(Boolean).join(' / ')||'(sem texto)';
+    for(var i=0;i<N;i++){var d=dados(i),t=[d.t1,d.t2,d.t3].filter(Boolean).join(' / ')||'(sem texto)';
       l.push((i+1)+') "'+t+'" · letra '+d.f+' · '+(d.i?NOMES[d.i]+', '+LADOS[d.l]:'sem imagem')+' · '+MOLD[d.m])}
     l.push('Valor do kit: '+reais(PRECOS[extra.b][N])+' (frete à parte)');
     return l.join('\n');
   }
   function codigo(){
-    var o={k:N,s:[],c:extra.c.trim(),b:extra.b,u:extra.u.trim()};for(var i=0;i<N;i++){var d=dados(i);o.s.push([d.t1,d.t2,d.f,d.i,d.l,d.m])}
+    var o={k:N,s:[],c:extra.c.trim(),b:extra.b,u:extra.u.trim()};for(var i=0;i<N;i++){var d=dados(i),a=[d.t1,d.t2,d.f,d.i,d.l,d.m];if(d.t3&&d.t3.trim())a.push(d.t3);o.s.push(a)}
     return 'SAP1:'+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
   }
   function renderResumo(){
@@ -485,8 +487,9 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
   $('moldura').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;dados(sel).m=+b.dataset.v;renderControles();desenha()});
   $('t1').addEventListener('input',function(){dados(sel).t1=this.value;desenha();[].forEach.call(document.querySelectorAll('.fonte'),function(b){b.firstChild.nodeValue=dados(sel).t1||'Seu nome'})});
   $('t2').addEventListener('input',function(){dados(sel).t2=this.value;desenha()});
+  $('t3').addEventListener('input',function(){dados(sel).t3=this.value;desenha()});
   $('cats').addEventListener('click',function(e){var b=acha(e,'button');if(!b)return;cat=b.dataset.c;renderFrases()});
-  $('frases').addEventListener('click',function(e){var b=acha(e,'.frase');if(!b)return;var f=FRASES[cat][+b.dataset.k],d=dados(sel);d.t1=f[0];d.t2=f[1];d.i=f[2];renderControles();desenha()});
+  $('frases').addEventListener('click',function(e){var b=acha(e,'.frase');if(!b)return;var f=FRASES[cat][+b.dataset.k],d=dados(sel);d.t1=f[0];d.t2=f[1];d.t3='';d.i=f[2];renderControles();desenha()});
   $('espelho').addEventListener('change',desenha);
   function aguarda(f){try{document.fonts.load(pesoDe(f)+' 40px "'+f+'"').then(desenha)}catch(e){}}
   $('copiar').addEventListener('click',function(){
@@ -500,7 +503,7 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
       var c=$('cod').value.trim();if(c.indexOf('SAP1:')!==0)throw 0;
       var o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5)))));
       if(!o||!o.s||[2,4,6].indexOf(o.k)<0)throw 0;
-      N=o.k;slots=[];o.s.forEach(function(a,i){slots[i]={t1:String(a[0]||'').slice(0,22),t2:String(a[1]||'').slice(0,22),f:a[2],i:ICONES[a[3]]?a[3]:'',l:a[4]==='dir'?'dir':'esq',m:[0,1,2].indexOf(+a[5])<0?0:+a[5]}});
+      N=o.k;slots=[];o.s.forEach(function(a,i){slots[i]={t1:String(a[0]||'').slice(0,22),t2:String(a[1]||'').slice(0,22),t3:String(a[6]||'').slice(0,22),f:a[2],i:ICONES[a[3]]?a[3]:'',l:a[4]==='dir'?'dir':'esq',m:[0,1,2].indexOf(+a[5])<0?0:+a[5]}});
       extra={c:String(o.c||'').slice(0,26),b:o.b==='estojo'?'estojo':'aberta',u:String(o.u||'').slice(0,40)};$('cliente').value=extra.c;$('cidade').value=extra.u;marcaExtra();sel=0;renderControles();desenha();$('okc').textContent='Pedido carregado.';
     }catch(e){$('okc').textContent='Código inválido. Confira se copiou tudo, começando por SAP1:'}
   });

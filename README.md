@@ -35,6 +35,8 @@ Todos os caminhos são relativos, então funciona em subpasta e, depois, em dom�
 
 O editor não envia nada para servidor. A cliente monta o carimbo, o editor gera um resumo com um **código de pedido** (`SAP1:` + base64) e abre o WhatsApp com a mensagem pronta. Os dados ficam só no navegador dela e na conversa. O código de pedido é lido pelo projeto da laser (LaserLink) para gerar o arquivo de corte.
 
+Formato: `SAP1:` + base64 de `{k,s,c,b,u}`. `k` é a quantidade (2, 4 ou 6), `c` o nome na caixa, `b` o modelo (`aberta` ou `estojo`), `u` cidade ou CEP. Cada item de `s` é `[linha1, linha2, fonte, ícone, lado, moldura]`. Quando o carimbo tem **linha 3**, ela vem como 7º elemento: `[linha1, linha2, fonte, ícone, lado, moldura, linha3]`. Sem linha 3, o item continua com 6 elementos, igual ao formato antigo.
+
 ## Onde mudar o quê (em `carimbos/monte/index.html`)
 
 | O quê | Onde |
