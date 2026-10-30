@@ -302,6 +302,7 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
   var cv=document.createElement('canvas').getContext('2d');
   function dados(i){return slots[i]||(slots[i]=JSON.parse(JSON.stringify(EXEMPLOS[i%6])))}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  function fonteValida(f){for(var k=0;k<FONTES.length;k++)if(FONTES[k][0]===f)return true;return false}
   function pesoDe(f){for(var k=0;k<FONTES.length;k++)if(FONTES[k][0]===f)return FONTES[k][1];return 700}
   function larg100(txt,f){cv.font=pesoDe(f)+' 100px "'+f+'", sans-serif';return cv.measureText(txt).width}
 
@@ -502,7 +503,9 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     try{
       var c=$('cod').value.trim();if(c.indexOf('SAP1:')!==0)throw 0;
       var o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5)))));
-      if(!o||!o.s||[2,4,6].indexOf(o.k)<0)throw 0;
+      /* recusa codigo incompleto ou adulterado: quantidade de carimbos e fontes precisam bater */
+      if(!o||[2,4,6].indexOf(o.k)<0||!Array.isArray(o.s)||o.s.length!==o.k)throw 0;
+      o.s.forEach(function(a){if(!Array.isArray(a)||!fonteValida(a[2]))throw 0});
       N=o.k;slots=[];o.s.forEach(function(a,i){slots[i]={t1:String(a[0]||'').slice(0,22),t2:String(a[1]||'').slice(0,22),t3:String(a[6]||'').slice(0,22),f:a[2],i:ICONES[a[3]]?a[3]:'',l:a[4]==='dir'?'dir':'esq',m:[0,1,2].indexOf(+a[5])<0?0:+a[5]}});
       extra={c:String(o.c||'').slice(0,26),b:o.b==='estojo'?'estojo':'aberta',u:String(o.u||'').slice(0,40)};$('cliente').value=extra.c;$('cidade').value=extra.u;marcaExtra();sel=0;renderControles();desenha();$('okc').textContent='Pedido carregado.';
     }catch(e){$('okc').textContent='Código inválido. Confira se copiou tudo, começando por SAP1:'}

@@ -16,6 +16,7 @@ Site estático (HTML, CSS e JS puros, sem framework e sem build). `index.html` �
 8. O formato do código de pedido `SAP1:` é contrato com o projeto da laser. **Não mudar** sem atualizar o outro lado (veja `docs/HANDOFF.md`).
 
 ## Testar antes de entregar
+- Rodar `node tests/site.test.js` (precisa do Playwright). Ao mudar o editor, o código `SAP1:` ou os preços, atualizar o teste junto.
 - Abrir via `python3 -m http.server`, em largura de celular (390 px) e de PC.
 - Clicar em todos os ícones, trocar de grupo, de letra e de quantidade de carimbos; conferir o resumo e o botão do WhatsApp.
 - Se possível, testar em iPhone (Safari) e no navegador do WhatsApp.

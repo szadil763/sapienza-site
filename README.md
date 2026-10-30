@@ -23,6 +23,23 @@ python3 -m http.server 8000
 # abrir http://localhost:8000
 ```
 
+## Testes automáticos
+
+```bash
+npm i -g playwright && npx playwright install chromium   # só na primeira vez
+node tests/site.test.js
+```
+
+Abre a home, a vitrine e o editor em 360 e 1280 px no Chromium e confere:
+- todos os botões e opções do editor;
+- o código `SAP1:` (ordem dos campos, linha 3 no 7º elemento, ida e volta pelo botão Carregar);
+- que códigos incompletos ou adulterados são recusados;
+- a passagem do kit escolhido da vitrine para o editor;
+- que os preços da vitrine batem com os do editor;
+- alvos de toque de 44 px e ausência de rolagem lateral.
+
+Rodar antes de publicar.
+
 ## Publicar no GitHub Pages
 
 1. Criar o repositório (sugestão: `sapienza-site`) e enviar esta pasta.
