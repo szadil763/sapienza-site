@@ -32,7 +32,7 @@ node tests/site.test.js
 
 Abre a home, a vitrine e o editor em 360 e 1280 px no Chromium e confere:
 - todos os botões e opções do editor;
-- o código `SAP1:` (ordem dos campos, linha 3 no 7º elemento, ida e volta pelo botão Carregar);
+- o código `SAP1:`/`SAP2:` (ordem dos campos, linha 3 no 7º elemento com prefixo `SAP2:`, ida e volta pelo botão Carregar);
 - que códigos incompletos ou adulterados são recusados;
 - a passagem do kit escolhido da vitrine para o editor;
 - que os preços da vitrine batem com os do editor;
@@ -52,7 +52,7 @@ Todos os caminhos são relativos, então funciona em subpasta e, depois, em dom�
 
 O editor não envia nada para servidor. A cliente monta o carimbo, o editor gera um resumo com um **código de pedido** (`SAP1:` + base64) e abre o WhatsApp com a mensagem pronta. Os dados ficam só no navegador dela e na conversa. O código de pedido é lido pelo projeto da laser (LaserLink) para gerar o arquivo de corte.
 
-Formato: `SAP1:` + base64 de `{k,s,c,b,u}`. `k` é a quantidade (2, 4 ou 6), `c` o nome na caixa, `b` o modelo (`aberta` ou `estojo`), `u` cidade ou CEP. Cada item de `s` é `[linha1, linha2, fonte, ícone, lado, moldura]`. Quando o carimbo tem **linha 3**, ela vem como 7º elemento: `[linha1, linha2, fonte, ícone, lado, moldura, linha3]`. Sem linha 3, o item continua com 6 elementos, igual ao formato antigo.
+Formato: `SAP1:` + base64 de `{k,s,c,b,u}`. `k` é a quantidade (2, 4 ou 6), `c` o nome na caixa, `b` o modelo (`aberta` ou `estojo`), `u` cidade ou CEP. Cada item de `s` é `[linha1, linha2, fonte, ícone, lado, moldura]`. Quando o carimbo tem **linha 3**, ela vem como 7º elemento: `[linha1, linha2, fonte, ícone, lado, moldura, linha3]`. Quando algum carimbo tem linha 3, o código começa com **`SAP2:`** em vez de `SAP1:` (o resto do formato é igual), para que um LaserLink que só conhece o `SAP1:` recuse o código em vez de cortar sem a linha 3. Sem linha 3, o código continua `SAP1:` com 6 elementos por carimbo, igual ao formato antigo. O botão Carregar aceita os dois.
 
 ## Onde mudar o quê (em `carimbos/monte/index.html`)
 

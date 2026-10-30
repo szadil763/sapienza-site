@@ -198,7 +198,7 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
 
       <details>
         <summary>Já tenho um código de pedido</summary>
-        <label for="cod">Cole o código (começa com SAP1:)</label>
+        <label for="cod">Cole o código (começa com SAP1: ou SAP2:)</label>
         <input type="text" id="cod" autocomplete="off">
         <button class="btn" id="carregar" type="button" style="margin-top:10px">Carregar</button>
         <p class="ok" id="okc" role="status"></p>
@@ -381,8 +381,9 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
     return l.join('\n');
   }
   function codigo(){
-    var o={k:N,s:[],c:extra.c.trim(),b:extra.b,u:extra.u.trim()};for(var i=0;i<N;i++){var d=dados(i),a=[d.t1,d.t2,d.f,d.i,d.l,d.m];if(d.t3&&d.t3.trim())a.push(d.t3);o.s.push(a)}
-    return 'SAP1:'+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+    /* SAP2 = SAP1 com linha 3 no 7o elemento; so usado quando algum carimbo tem linha 3, para o LaserLink antigo recusar em vez de cortar sem ela */
+    var o={k:N,s:[],c:extra.c.trim(),b:extra.b,u:extra.u.trim()},v=1;for(var i=0;i<N;i++){var d=dados(i),a=[d.t1,d.t2,d.f,d.i,d.l,d.m];if(d.t3&&d.t3.trim()){a.push(d.t3);v=2}o.s.push(a)}
+    return 'SAP'+v+':'+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
   }
   function renderResumo(){
     var txt=resumoTexto()+'\n\nCódigo: '+codigo();
@@ -501,14 +502,14 @@ summary{cursor:pointer;font-weight:600;padding:12px 0}
   });
   $('carregar').addEventListener('click',function(){
     try{
-      var c=$('cod').value.trim();if(c.indexOf('SAP1:')!==0)throw 0;
+      var c=$('cod').value.trim();if(c.indexOf('SAP1:')!==0&&c.indexOf('SAP2:')!==0)throw 0;
       var o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5)))));
       /* recusa codigo incompleto ou adulterado: quantidade de carimbos e fontes precisam bater */
       if(!o||[2,4,6].indexOf(o.k)<0||!Array.isArray(o.s)||o.s.length!==o.k)throw 0;
       o.s.forEach(function(a){if(!Array.isArray(a)||!fonteValida(a[2]))throw 0});
       N=o.k;slots=[];o.s.forEach(function(a,i){slots[i]={t1:String(a[0]||'').slice(0,22),t2:String(a[1]||'').slice(0,22),t3:String(a[6]||'').slice(0,22),f:a[2],i:ICONES[a[3]]?a[3]:'',l:a[4]==='dir'?'dir':'esq',m:[0,1,2].indexOf(+a[5])<0?0:+a[5]}});
       extra={c:String(o.c||'').slice(0,26),b:o.b==='estojo'?'estojo':'aberta',u:String(o.u||'').slice(0,40)};$('cliente').value=extra.c;$('cidade').value=extra.u;marcaExtra();sel=0;renderControles();desenha();$('okc').textContent='Pedido carregado.';
-    }catch(e){$('okc').textContent='Código inválido. Confira se copiou tudo, começando por SAP1:'}
+    }catch(e){$('okc').textContent='Código inválido. Confira se copiou tudo, começando por SAP1: ou SAP2:'}
   });
 
   try{marcaExtra();renderControles();desenha()}catch(err){var av=$('aviso');if(av)av.textContent='Algo falhou ao carregar. Atualize a página ou abra no Chrome. Se continuar, chame no WhatsApp.'}

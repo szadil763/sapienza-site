@@ -13,7 +13,7 @@ Site estático (HTML, CSS e JS puros, sem framework e sem build). `index.html` �
 5. **BNCC**: citar só códigos reais e verificados.
 6. **Logo**: usar `assets/simbolo-*.svg` sem distorcer, recolorir ou aplicar efeito. Versão clara em fundo claro, escura em fundo escuro.
 7. **Cores da marca** só as de `README.md`. Tom: professor que mostra a prática, claro, sem jargão de marketing.
-8. O formato do código de pedido `SAP1:` é contrato com o projeto da laser. **Não mudar** sem atualizar o outro lado (veja `docs/HANDOFF.md`).
+8. O formato do código de pedido `SAP1:`/`SAP2:` é contrato com o projeto da laser (descrito no `README.md`). **Não mudar** sem atualizar o outro lado (veja `docs/HANDOFF.md`).
 
 ## Testar antes de entregar
 - Rodar `node tests/site.test.js` (precisa do Playwright). Ao mudar o editor, o código `SAP1:` ou os preços, atualizar o teste junto.

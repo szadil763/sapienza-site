@@ -117,10 +117,13 @@ async function testaEditor(p, base) {
   await alvosDeToque(p, '.wrap a,.wrap button,summary,label.chk', 'editor');
 }
 
-/* contrato com o LaserLink: SAP1 = base64 de {k,s,c,b,u}; cada carimbo [t1,t2,fonte,ícone,lado,moldura] e, só com linha 3, t3 no 7º elemento */
+/* contrato com o LaserLink: SAP1 = base64 de {k,s,c,b,u}; cada carimbo [t1,t2,fonte,ícone,lado,moldura].
+   SAP2 = mesmo formato, usado só quando algum carimbo tem linha 3, que vai no 7º elemento */
 async function testaCodigo(p, base) {
   await p.goto(base + 'carimbos/monte/', { waitUntil: 'networkidle' });
-  var o = decodifica(await codigoAtual(p));
+  var cod0 = await codigoAtual(p);
+  confere(cod0.indexOf('SAP1:') === 0, 'sem linha 3 o código deve começar com SAP1:');
+  var o = decodifica(cod0);
   confere(Object.keys(o).join() === 'k,s,c,b,u', 'SAP1: chaves ' + Object.keys(o).join());
   confere(o.k === 6 && o.s.length === 6, 'SAP1: kit padrão deveria ter 6 carimbos');
   confere(o.s.every(function (a) { return a.length === 6; }), 'SAP1: sem linha 3 cada carimbo deve ter 6 elementos');
@@ -133,6 +136,7 @@ async function testaCodigo(p, base) {
   confere(res.indexOf('"Parabéns / pelo seu / capricho!"') >= 0, 'resumo sem as 3 linhas');
   confere(await p.locator('#prev text').count() === 3, 'prévia sem as 3 linhas');
   var cod = await codigoAtual(p);
+  confere(cod.indexOf('SAP2:') === 0, 'com linha 3 o código deve começar com SAP2:');
   o = decodifica(cod);
   confere(o.s[0].length === 7 && o.s[0][6] === 'capricho!', 'SAP1: linha 3 no 7º elemento ' + JSON.stringify(o.s[0]));
   confere(o.s[1].length === 6, 'SAP1: carimbo sem linha 3 deve continuar com 6 elementos');
@@ -146,6 +150,15 @@ async function testaCodigo(p, base) {
   confere(await p.textContent('#okc') === 'Pedido carregado.', 'carregar código válido');
   confere(await p.textContent('#resumo') === res, 'ida e volta do código mudou o resumo');
   confere(await p.inputValue('#t3') === 'capricho!', 'carregar não trouxe a linha 3');
+  /* apagar a linha 3 volta para SAP1 */
+  await p.fill('#t3', '');
+  confere((await codigoAtual(p)).indexOf('SAP1:') === 0, 'sem linha 3 o código deve voltar a SAP1:');
+  await p.fill('#t3', 'capricho!');
+  confere(await p.textContent('#resumo') === res, 'recolocar a linha 3 mudou o resumo');
+  /* códigos SAP1 antigos continuam carregando */
+  await p.fill('#cod', cod0); await p.click('#carregar');
+  confere(await p.textContent('#okc') === 'Pedido carregado.', 'código SAP1 antigo não carregou');
+  await p.fill('#cod', cod); await p.click('#carregar');
 
   /* códigos incompletos ou adulterados são recusados e não mudam o pedido */
   var base6 = decodifica(cod);
@@ -163,6 +176,8 @@ async function testaCodigo(p, base) {
     confere((await p.textContent('#okc')).indexOf('Código inválido') === 0, 'código com ' + nome + ' foi aceito');
     confere(await p.textContent('#resumo') === res, 'código com ' + nome + ' alterou o pedido');
   }
+  await p.fill('#cod', 'SAP3:' + cod.slice(5)); await p.click('#carregar');
+  confere((await p.textContent('#okc')).indexOf('Código inválido') === 0, 'prefixo desconhecido foi aceito');
   await p.fill('#cod', 'SAP1:isso-nao-e-base64'); await p.click('#carregar');
   confere((await p.textContent('#okc')).indexOf('Código inválido') === 0, 'código ilegível foi aceito');
 }
